@@ -19,6 +19,7 @@ const createChar = (xp) => {
     vows: [],
     bonds: [],
     miscProgress: [],
+    assets: [],
   });
 
   return char;

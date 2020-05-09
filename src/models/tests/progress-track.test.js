@@ -1,5 +1,6 @@
 import times from 'lodash/fp/times';
 import { describe } from 'riteway';
+import shortid from 'shortid';
 import {
   difficultyLevels,
   MAX_MARK_VAL,
@@ -12,6 +13,7 @@ const makeMarks = (numMarks = 10) => times(() => ({ value: 0 }), numMarks);
 
 describe('ProgressTrack.totalProgress()', async (assert) => {
   const withProgress = ProgressTrack.create({
+    id: shortid(),
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.troublesome,
     name: 'foo',
@@ -26,6 +28,7 @@ describe('ProgressTrack.totalProgress()', async (assert) => {
   });
 
   const noProgress = ProgressTrack.create({
+    id: shortid(),
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.troublesome,
     name: 'foo',
@@ -40,6 +43,7 @@ describe('ProgressTrack.totalProgress()', async (assert) => {
   });
 
   const noMarks = ProgressTrack.create({
+    id: shortid(),
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.troublesome,
     name: 'foo',
@@ -75,6 +79,7 @@ describe('ProgressTrack.markProgress()', async (assert) => {
   };
 
   const troubleSome = ProgressTrack.create({
+    id: shortid(),
     name: difficultyLevels.troublesome,
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.troublesome,
@@ -89,6 +94,7 @@ describe('ProgressTrack.markProgress()', async (assert) => {
   });
 
   const dangerous = ProgressTrack.create({
+    id: shortid(),
     name: difficultyLevels.dangerous,
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.dangerous,
@@ -103,6 +109,7 @@ describe('ProgressTrack.markProgress()', async (assert) => {
   });
 
   const formidable = ProgressTrack.create({
+    id: shortid(),
     name: difficultyLevels.formidable,
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.formidable,
@@ -117,6 +124,7 @@ describe('ProgressTrack.markProgress()', async (assert) => {
   });
 
   const extreme = ProgressTrack.create({
+    id: shortid(),
     name: difficultyLevels.extreme,
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.extreme,
@@ -131,6 +139,7 @@ describe('ProgressTrack.markProgress()', async (assert) => {
   });
 
   const epic = ProgressTrack.create({
+    id: shortid(),
     name: difficultyLevels.epic,
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.epic,
@@ -145,6 +154,7 @@ describe('ProgressTrack.markProgress()', async (assert) => {
   });
 
   const bond = ProgressTrack.create({
+    id: shortid(),
     name: difficultyLevels.bond,
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.bond,
@@ -176,6 +186,7 @@ describe('ProgressTrack.markProgress()', async (assert) => {
 
 describe('ProgressTrack.markProgress()', async (assert) => {
   const track = ProgressTrack.create({
+    id: shortid(),
     name: 'foo',
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.troublesome,

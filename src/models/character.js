@@ -4,6 +4,7 @@ import { Stat } from './stat';
 import { Momentum } from './momentum';
 import { ProgressTrack } from './progress-track';
 import { Attribute } from './attribute';
+import { Asset } from './asset';
 
 export const Character = types
   .model({
@@ -18,6 +19,7 @@ export const Character = types
     vows: types.array(ProgressTrack),
     bonds: types.array(ProgressTrack),
     miscProgress: types.array(ProgressTrack),
+    assets: types.array(Asset),
   })
   .actions((self) => ({
     addXP(addend) {

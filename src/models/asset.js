@@ -8,7 +8,7 @@ export const assetTypes = {
 };
 
 export const AssetAbility = types
-  .model({
+  .model('Asset Ability', {
     description: types.string,
     available: types.boolean,
   })
@@ -18,7 +18,8 @@ export const AssetAbility = types
     },
   }));
 
-export const Asset = types.model({
+export const Asset = types.model('Asset', {
+  id: types.identifier,
   name: types.string,
   type: types.string,
   description: types.maybeNull(types.string),

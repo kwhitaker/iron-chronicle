@@ -68,6 +68,7 @@ export const ProgressMark = types
 
 export const ProgressTrack = types
   .model('Progress Track', {
+    id: types.identifier,
     type: types.string,
     name: types.string,
     marks: types.array(ProgressMark),
