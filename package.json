@@ -27,8 +27,11 @@
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "lint": "eslint --fix --ext .js,.jsx ./src"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint",
+      "pre-push": "yarn rite"
+    }
   },
   "browserslist": {
     "production": [
