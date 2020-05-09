@@ -1,4 +1,5 @@
 import { types } from 'mobx-state-tree';
+import clamp from 'lodash/fp/clamp';
 
 export const Stat = types
   .model('Stat', {
@@ -8,12 +9,7 @@ export const Stat = types
     value: types.number,
   })
   .actions((self) => ({
-    inc() {
-      const next = Math.min(self.max, self.value + 1);
-      self.value = next;
-    },
-    dec() {
-      const next = Math.max(self.min, self.value - 1);
-      self.value = next;
+    setValue(nextVal) {
+      self.value = clamp(self.min, self.max, nextVal);
     },
   }));

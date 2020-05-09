@@ -5,23 +5,23 @@ export const Momentum = types
   .model({
     min: types.number,
     max: types.number,
+    currentMax: types.number,
     resetValue: types.number,
     value: types.number,
   })
   .actions((self) => ({
-    inc() {
-      const next = Math.min(self.max, self.value + 1);
-      self.value = next;
-    },
-    dec() {
-      const next = Math.max(self.min, self.value - 1);
-      self.value = next;
+    setValue(nextVal) {
+      self.value = clamp(self.min, self.max, nextVal);
     },
     reset() {
       self.value = self.resetValue;
     },
-    updateResetValue(value) {
+    setResetValue(value) {
       const next = clamp(self.min, self.max, value);
       self.resetValue = next;
+    },
+    setCurrentMax(value) {
+      const next = clamp(self.min, self.max, value);
+      self.currentMax = next;
     },
   }));

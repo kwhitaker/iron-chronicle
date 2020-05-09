@@ -23,7 +23,7 @@ export const progressTrackTypes = {
   other: 'other',
 };
 
-const updateProgress = (
+const getProgressForDifficulty = (
   currentProgress = 0,
   difficulty = difficultyLevels.troublesome,
 ) => {
@@ -58,10 +58,11 @@ const sumProgress = compose(sum, pluck('value'));
 
 export const ProgressMark = types
   .model('Progress Mark', {
+    id: types.identifier,
     value: types.number,
   })
   .actions((self) => ({
-    updateValue(nextVal) {
+    setValue(nextVal) {
       self.value = clamp(0, MAX_MARK_VAL, nextVal);
     },
   }));
@@ -82,7 +83,10 @@ export const ProgressTrack = types
   .actions((self) => ({
     markProgress() {
       const lastProgress = self.totalProgress;
-      const nextProgress = updateProgress(lastProgress, self.difficulty);
+      const nextProgress = getProgressForDifficulty(
+        lastProgress,
+        self.difficulty,
+      );
       let delta = nextProgress - lastProgress;
 
       self.marks.forEach((mark) => {
@@ -91,16 +95,16 @@ export const ProgressTrack = types
         }
 
         if (delta <= MAX_MARK_VAL) {
-          mark.updateValue(mark.value + delta);
+          mark.setValue(mark.value + delta);
           delta = 0;
           return;
         }
 
         delta -= MAX_MARK_VAL;
-        mark.updateValue(mark.value + delta);
+        mark.setValue(mark.value + delta);
       });
     },
     resetProgress() {
-      self.marks.forEach((mark) => mark.updateValue(0));
+      self.marks.forEach((mark) => mark.setValue(0));
     },
   }));

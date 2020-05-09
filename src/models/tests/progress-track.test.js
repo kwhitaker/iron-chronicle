@@ -4,12 +4,12 @@ import shortid from 'shortid';
 import {
   difficultyLevels,
   MAX_MARK_VAL,
-  ProgressMark,
   ProgressTrack,
   progressTrackTypes,
 } from '../progress-track';
 
-const makeMarks = (numMarks = 10) => times(() => ({ value: 0 }), numMarks);
+const makeMarks = (numMarks = 10) =>
+  times((i) => ({ id: i.toString(), value: 0 }), numMarks);
 
 describe('ProgressTrack.totalProgress()', async (assert) => {
   const withProgress = ProgressTrack.create({
@@ -17,29 +17,18 @@ describe('ProgressTrack.totalProgress()', async (assert) => {
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.troublesome,
     name: 'foo',
-    marks: [
-      ProgressMark.create({
-        value: MAX_MARK_VAL,
-      }),
-      ProgressMark.create({
-        value: 3,
-      }),
-    ],
+    marks: makeMarks(2),
   });
+
+  withProgress.marks[0].setValue(MAX_MARK_VAL);
+  withProgress.marks[1].setValue(3);
 
   const noProgress = ProgressTrack.create({
     id: shortid(),
     type: progressTrackTypes.vow,
     difficulty: difficultyLevels.troublesome,
     name: 'foo',
-    marks: [
-      ProgressMark.create({
-        value: 0,
-      }),
-      ProgressMark.create({
-        value: 0,
-      }),
-    ],
+    marks: makeMarks(2),
   });
 
   const noMarks = ProgressTrack.create({

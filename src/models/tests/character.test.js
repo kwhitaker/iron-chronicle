@@ -14,6 +14,7 @@ const createChar = (xp) => {
       max: 10,
       resetValue: 2,
       value: 2,
+      currentMax: 10,
     },
     stats: [],
     vows: [],
