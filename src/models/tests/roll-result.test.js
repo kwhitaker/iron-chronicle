@@ -81,7 +81,7 @@ describe('RollResult.setOutcome()', async (assert) => {
     });
 
     result.setOutcome(nextOutcome);
-    return result.title;
+    return result.outcome;
   };
 
   assert({
