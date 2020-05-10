@@ -5,6 +5,7 @@ import { RollResult } from './roll-result';
 export const Game = types
   .model('Game', {
     id: types.identifier,
+    title: types.string,
     characters: types.map(Character),
     rolls: types.map(RollResult),
     journal: types.maybeNull(types.string),

@@ -64,6 +64,34 @@ describe('RollResult.setTitle()', async (assert) => {
   });
 });
 
+describe('RollResult.setOutcome()', async (assert) => {
+  const setter = (outcome, nextOutcome) => {
+    const result = RollResult.create({
+      id: shortid(),
+      name: 'foo',
+      adds: 0,
+      rolls: [1, 1, 1],
+      outcome,
+      title: 'foo',
+      stat: {
+        name: 'edge',
+        value: 1,
+      },
+      dateRolled: Date.now(),
+    });
+
+    result.setOutcome(nextOutcome);
+    return result.title;
+  };
+
+  assert({
+    given: 'a new outcome is provided',
+    should: 'update the outcome',
+    actual: setter('bar', 'baz'),
+    expected: 'baz',
+  });
+});
+
 describe('RollResult.hitType', async (assert) => {
   const getter = (rollAndAdds) => {
     const result = RollResult.create({

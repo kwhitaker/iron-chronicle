@@ -1,13 +1,12 @@
 import React from 'react';
-import range from 'lodash/fp/range';
+import { observer } from 'mobx-react-lite';
+import { useAppStore } from './models';
+import { Momentum, Stats } from './components';
 
-const MomentumVal = ({ val }) => (
-  <div className="border border-black font-bold flex flex-auto text-3xl min-h-16 justify-center items-center">
-    {val}
-  </div>
-);
+export const Character = observer(() => {
+  const { characters } = useAppStore();
+  const character = characters[0];
 
-export const Character = () => {
   return (
     <form className="container mx-auto h-screen pt-4 pb-4 flex flex-col">
       <div className="flex flex-initial mb-4">
@@ -43,31 +42,14 @@ export const Character = () => {
         </div>
       </div>
       <div className="flex flex-1 overflow-y-hidden">
-        <div className="w-2/12 px-2 h-full">
-          <div className="h-full flex flex-col">
-            {range(-6, 11)
-              .reverse()
-              .map((v) => (
-                <MomentumVal val={v} key={v} />
-              ))}
-            <div className="border border-black font-bold flex flex-col flex-auto text-3xl min-h-16 justify-center items-center bg-gray-400">
-              <span className="text-base">Max</span>
-              10
-            </div>
-            <div className="border border-black font-bold flex flex-col flex-auto text-3xl min-h-16 justify-center items-center bg-gray-400">
-              <span className="text-base">Reset</span>2
-            </div>
-          </div>
-        </div>
+        <Momentum momentum={character.momentum} />
         <div className="w-10/12 px-2 h-full overflow-y-auto">
           <div className="bg-gray-400 h-full" style={{ height: '10000px' }}>
             Info
           </div>
         </div>
-        <div className="w-2/12 px-2 h-full flex flex-col">
-          <div className="bg-gray-400 h-full">Stats</div>
-        </div>
+        <Stats stats={character.stats} />
       </div>
     </form>
   );
-};
+});

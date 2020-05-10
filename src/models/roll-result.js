@@ -11,6 +11,7 @@ export const RollResult = types
     id: types.identifier,
     title: types.string,
     description: types.maybeNull(types.string),
+    outcome: types.maybeNull(types.string),
     adds: types.number,
     rolls: types.array(types.number),
     stat: types.model('Roll Result Stat', {
@@ -41,5 +42,8 @@ export const RollResult = types
     },
     setTitle(nextTitle) {
       self.title = nextTitle;
+    },
+    setOutcome(nextOutcome) {
+      self.outcome = nextOutcome;
     },
   }));

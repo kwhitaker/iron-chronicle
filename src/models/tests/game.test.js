@@ -8,6 +8,7 @@ describe('Game.setJournal()', async (assert) => {
       characters: {},
       rolls: {},
       journal,
+      title: 'foo',
     });
 
     game.setJournal(nextJournal);

@@ -16,12 +16,17 @@ export const Momentum = types
     reset() {
       self.value = self.resetValue;
     },
-    setResetValue(value) {
-      const next = clamp(self.min, self.max, value);
+    setResetValue(nextReset) {
+      const next = clamp(self.min, self.max, nextReset);
       self.resetValue = next;
     },
-    setCurrentMax(value) {
-      const next = clamp(self.min, self.max, value);
+    setCurrentMax(nextMax) {
+      const next = clamp(self.min, self.max, nextMax);
       self.currentMax = next;
+
+      // TODO add test for this
+      if (self.value > next) {
+        self.value = next;
+      }
     },
   }));
