@@ -16,7 +16,13 @@ export const appStore = AppStore.create({
     {
       id: 'bar',
       name: 'Yo Mama',
-      attributes: [],
+      attributes: [
+        { name: 'edge', value: 1 },
+        { name: 'heart', value: 1 },
+        { name: 'iron', value: 1 },
+        { name: 'shadow', value: 1 },
+        { name: 'wits', value: 1 },
+      ],
       xp: 0,
       conditions: [],
       banes: [],

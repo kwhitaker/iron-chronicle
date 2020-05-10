@@ -1,7 +1,7 @@
 import isNaN from 'lodash/fp/isNaN';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { Momentum, Stats } from './components';
+import { Momentum, Stats, Attributes } from './components';
 import { useAppStore } from './models';
 
 export const Character = observer(() => {
@@ -35,7 +35,7 @@ export const Character = observer(() => {
               </span>
               <input
                 id="name"
-                className="bg-gray-200 px-2 pt-2 pb-2 text-lg border border-black"
+                className="bg-gray-200 px-2 pt-2 pb-2 text-lg border border-black focus:bg-blue-200"
                 value={character.name}
                 onChange={handleNameUpdated}
                 required
@@ -51,7 +51,7 @@ export const Character = observer(() => {
               </span>
               <input
                 id="xp"
-                className="bg-gray-200 px-2 pt-2 pb-2 text-lg border border-black"
+                className="bg-gray-200 px-2 pt-2 pb-2 text-lg border border-black focus:bg-blue-200"
                 value={character.xp}
                 onChange={handleXPUpdated}
                 required
@@ -63,8 +63,8 @@ export const Character = observer(() => {
       <div className="flex flex-1 overflow-y-hidden">
         <Momentum momentum={character.momentum} />
         <div className="w-10/12 px-2 h-full overflow-y-auto">
-          <div className="bg-gray-400 h-full" style={{ height: '10000px' }}>
-            Info
+          <div className="h-full flex flex-col">
+            <Attributes attributes={character.attributes} />
           </div>
         </div>
         <Stats stats={character.stats} />
