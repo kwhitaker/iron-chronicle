@@ -1,4 +1,5 @@
 import { types } from 'mobx-state-tree';
+import orderBy from 'lodash/fp/orderBy';
 import { Character } from './character';
 import { RollResult } from './roll-result';
 
@@ -13,5 +14,13 @@ export const Game = types
   .actions((self) => ({
     setJournal(nextVal) {
       self.journal = nextVal;
+    },
+    addRollResult(nextResult) {
+      self.rolls.push(nextResult);
+    },
+  }))
+  .views((self) => ({
+    get rollsDesc() {
+      return orderBy('dateRolled', 'asc', Array.from(self.rolls.values()));
     },
   }));
