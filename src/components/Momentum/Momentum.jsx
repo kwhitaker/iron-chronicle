@@ -44,7 +44,7 @@ export const Momentum = observer(
         <div className="flex-shrink-0 p-2 bg-black uppercase text-white text-center">
           Momentum
         </div>
-        <div className="h-full flex flex-col h-auto overflow-y-scroll">
+        <div className="h-full flex flex-col h-auto overflow-y-auto scrollbar-w-2 scrollbar-track-gray-lighter scrollbar-thumb-rounded scrollbar-thumb-gray scrolling-touch">
           {range(min, max + 1)
             .reverse()
             .map((v) => (

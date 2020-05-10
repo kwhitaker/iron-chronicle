@@ -11,7 +11,7 @@ export const Stat = observer(
     };
 
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-auto">
         <div className="flex-shrink-0 p-2 bg-black uppercase text-white text-center">
           {name}
         </div>

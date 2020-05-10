@@ -1,9 +1,9 @@
 import { describe } from 'riteway';
 import { Character } from '../character';
 
-const createChar = (xp) => {
+const createChar = (name = 'foo', xp = 0) => {
   const char = Character.create({
-    name: 'foo',
+    name,
     attributes: [],
     xp,
     conditions: [],
@@ -26,52 +26,49 @@ const createChar = (xp) => {
   return char;
 };
 
-describe('Character.addXP()', async (assert) => {
-  const incrementer = (startingVal, toAdd) => {
-    const char = createChar(startingVal);
+describe('Character.setName()', async (assert) => {
+  const setter = (name, nextName) => {
+    const char = createChar(name);
 
-    char.addXP(toAdd);
-    return char.xp;
+    char.setName(nextName);
+    return char.name;
   };
 
-  const should = 'add the value to the XP, up-to the maximum value';
+  const expected = 'bar';
 
   assert({
-    given: 'the value is less than the max',
-    should,
-    actual: incrementer(2, 1),
-    expected: 3,
-  });
-
-  assert({
-    given: 'the value is the max',
-    should,
-    actual: incrementer(30, 1),
-    expected: 30,
+    given: 'a new name is provided',
+    should: 'change the name',
+    actual: setter('foo', expected),
+    expected,
   });
 });
 
-describe('Character.subXP()', async (assert) => {
-  const decrementer = (startingVal, toSub) => {
-    const char = createChar(startingVal);
-
-    char.subXP(toSub);
+describe('Character.setXP()', async (assert) => {
+  const setter = (xp, nextXP) => {
+    const char = createChar('foo', xp);
+    char.setXP(nextXP);
     return char.xp;
   };
 
-  const should = 'subtract the value to the XP, down-to the minimum value';
-
   assert({
-    given: 'the value is more than the min',
-    should,
-    actual: decrementer(2, 1),
-    expected: 1,
+    given: 'a value > 0 and < 30 is provided',
+    should: 'change the xp',
+    actual: setter(0, 5),
+    expected: 5,
   });
 
   assert({
-    given: 'the value is the min',
-    should,
-    actual: decrementer(0, 1),
+    given: 'a value < 0 is provided',
+    should: 'change the xp to 0',
+    actual: setter(0, -5),
     expected: 0,
+  });
+
+  assert({
+    given: 'a value > 30 is provided',
+    should: 'change the xp to 30',
+    actual: setter(0, 50),
+    expected: 30,
   });
 });

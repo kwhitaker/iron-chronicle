@@ -1,4 +1,5 @@
 import { types } from 'mobx-state-tree';
+import clamp from 'lodash/fp/clamp';
 import { Debility } from './debility';
 import { Stat } from './stat';
 import { Momentum } from './momentum';
@@ -22,12 +23,10 @@ export const Character = types
     assets: types.array(Asset),
   })
   .actions((self) => ({
-    addXP(addend) {
-      const next = Math.min(30, self.xp + addend);
-      self.xp = next;
+    setXP(nextXP) {
+      self.xp = clamp(0, 30, nextXP);
     },
-    subXP(subtrahend) {
-      const next = Math.max(0, self.xp - subtrahend);
-      self.xp = next;
+    setName(nextName) {
+      self.name = nextName;
     },
   }));

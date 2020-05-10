@@ -1,4 +1,4 @@
-import { onSnapshot, types } from 'mobx-state-tree';
+import { onPatch, types } from 'mobx-state-tree';
 import { createContext, useContext } from 'react';
 import { Character } from './character';
 import { Game } from './game';
@@ -56,13 +56,16 @@ export const appStore = AppStore.create({
   ],
 });
 
-onSnapshot(appStore, (snapshot) => {
+// onSnapshot(appStore, (snapshot) => {
+
+// });
+
+onPatch(appStore, (patch) => {
   if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line no-console
-    console.log('Snapshot ', snapshot);
+    console.log('Patch  ', patch);
   }
 });
-
 export const AppStoreContext = createContext(null);
 
 export const AppStoreProvider = AppStoreContext.Provider;

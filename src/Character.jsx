@@ -1,11 +1,28 @@
-import React from 'react';
+import isNaN from 'lodash/fp/isNaN';
 import { observer } from 'mobx-react-lite';
-import { useAppStore } from './models';
+import React from 'react';
 import { Momentum, Stats } from './components';
+import { useAppStore } from './models';
 
 export const Character = observer(() => {
   const { characters } = useAppStore();
   const character = characters[0];
+
+  const handleNameUpdated = (e) => {
+    character.setName(e.currentTarget.value);
+  };
+
+  const handleXPUpdated = (e) => {
+    const next = Number(e.currentTarget.value);
+
+    if (isNaN(next)) {
+      // eslint-disable-next-line no-console
+      console.error('XP must be a number');
+      return;
+    }
+
+    character.setXP(next);
+  };
 
   return (
     <form className="container mx-auto h-screen pt-4 pb-4 flex flex-col">
@@ -19,7 +36,8 @@ export const Character = observer(() => {
               <input
                 id="name"
                 className="bg-gray-200 px-2 pt-2 pb-2 text-lg border border-black"
-                defaultValue="Yo Mama"
+                value={character.name}
+                onChange={handleNameUpdated}
                 required
               />
             </label>
@@ -34,7 +52,8 @@ export const Character = observer(() => {
               <input
                 id="xp"
                 className="bg-gray-200 px-2 pt-2 pb-2 text-lg border border-black"
-                defaultValue="0"
+                value={character.xp}
+                onChange={handleXPUpdated}
                 required
               />
             </label>
