@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '../../models';
 import { Modal, ModalHeader } from '../Modal';
 import { actionRoll } from './action-roll';
-import { ResultHit } from './RollResult';
+import { RollResult } from './RollResult';
 
 export const RollModal = observer(
   ({ onRequestClose, stat: { name, value } }) => {
@@ -75,13 +75,7 @@ export const RollModal = observer(
           </div>
         )}
         {hasResult && (
-          <div className="py-4 px-2 text-left">
-            <ResultHit
-              rolls={latestResult.rolls}
-              hitType={latestResult.hitType}
-            />
-            <pre>{JSON.stringify(latestResult, null, 2)}</pre>
-          </div>
+          <RollResult result={latestResult} onRequestClose={onRequestClose} />
         )}
       </Modal>
     );
