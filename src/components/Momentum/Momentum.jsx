@@ -57,7 +57,7 @@ export const Momentum = observer(
             ))}
           <div className="border-b border-black font-bold flex-auto min-h-16 bg-gray-400">
             <label
-              className="flex flex-col text-base justify-center items-center cursor-pointer"
+              className="flex flex-col text-base justify-center items-center cursor-pointer uppercase"
               htmlFor="currentMax"
             >
               Max
@@ -65,13 +65,13 @@ export const Momentum = observer(
                 value={currentMax}
                 onChange={handleMaxUpdated}
                 id="currentMax"
-                className="text-3xl p-3 text-center text-black bg-transparent"
+                className="text-2xl p-1 text-center font-black bg-transparent"
               />
             </label>
           </div>
           <div className="font-bold flex-auto min-h-16 bg-gray-400">
             <label
-              className="flex flex-col text-base justify-center items-center cursor-pointer"
+              className="flex flex-col text-base justify-center items-center cursor-pointer uppercase"
               htmlFor="resetValue"
             >
               Reset
@@ -79,7 +79,7 @@ export const Momentum = observer(
                 value={resetValue}
                 onChange={handleResetUpdated}
                 id="resetValue"
-                className="text-3xl p-3 text-center text-black bg-transparent"
+                className="text-2xl p-1 text-center font-black bg-transparent"
               />
             </label>
           </div>

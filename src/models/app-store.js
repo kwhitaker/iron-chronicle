@@ -1,3 +1,4 @@
+import range from 'lodash/fp/range';
 import { onPatch, types } from 'mobx-state-tree';
 import { createContext, useContext } from 'react';
 import { Character } from './character';
@@ -54,9 +55,42 @@ export const appStore = AppStore.create({
         currentMax: 10,
         value: 2,
       },
-      vows: [],
-      bonds: [],
-      miscProgress: [],
+      vows: [
+        {
+          id: 'vow1',
+          type: 'vow',
+          name: 'test vow',
+          marks: range(0, 11).map((i) => ({
+            id: i.toString(),
+            value: 0,
+          })),
+          difficulty: 'formidable',
+        },
+      ],
+      bonds: [
+        {
+          id: 'bond1',
+          type: 'bond',
+          name: 'test bond',
+          marks: range(0, 11).map((i) => ({
+            id: i.toString(),
+            value: 0,
+          })),
+          difficulty: 'bond',
+        },
+      ],
+      miscProgress: [
+        {
+          id: 'combat1',
+          type: 'combat',
+          name: 'test combat',
+          marks: range(0, 11).map((i) => ({
+            id: i.toString(),
+            value: 0,
+          })),
+          difficulty: 'extreme',
+        },
+      ],
       assets: [],
     },
   ],

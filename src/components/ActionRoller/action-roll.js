@@ -1,7 +1,7 @@
 import format from 'date-fns/format';
-import isEmpty from 'lodash/fp/isEmpty';
+import isNull from 'lodash/fp/isNull';
 import shortid from 'shortid';
-import { RollResult } from '../models';
+import { RollResult } from '../../models';
 
 // taken https://www.the-art-of-web.com/javascript/random/
 const roller = (sides = 10) => () => {
@@ -12,7 +12,7 @@ const d10 = roller(10);
 const d6 = roller(6);
 
 export const actionRoll = (stat = null, adds = 0) => {
-  if (isEmpty(stat) || !stat.value || !stat.name) {
+  if (isNull(stat) || !stat.name) {
     throw new Error('Cannot roll without a stat.');
   }
 

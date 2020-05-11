@@ -1,7 +1,14 @@
 import isNaN from 'lodash/fp/isNaN';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { Momentum, Stats, Attributes } from './components';
+import {
+  Momentum,
+  Stats,
+  Attributes,
+  Vows,
+  Bonds,
+  MiscProgress,
+} from './components';
 import { useAppStore } from './models';
 
 export const Character = observer(() => {
@@ -65,6 +72,9 @@ export const Character = observer(() => {
         <div className="w-10/12 px-2 h-full overflow-y-auto">
           <div className="h-full flex flex-col">
             <Attributes attributes={character.attributes} />
+            <Bonds bonds={character.bonds} />
+            <Vows vows={character.vows} />
+            <MiscProgress tracks={character.miscProgress} />
           </div>
         </div>
         <Stats stats={character.stats} />

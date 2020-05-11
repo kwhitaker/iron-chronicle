@@ -1,8 +1,8 @@
 import { types } from 'mobx-state-tree';
+import clamp from 'lodash/fp/clamp';
 import pluck from 'lodash/fp/pluck';
 import sum from 'lodash/fp/sum';
 import compose from 'lodash/fp/compose';
-import clamp from 'lodash/fp/clamp';
 
 export const MAX_MARK_VAL = 4;
 
@@ -62,8 +62,8 @@ export const ProgressMark = types
     value: types.number,
   })
   .actions((self) => ({
-    setValue(nextVal) {
-      self.value = clamp(0, MAX_MARK_VAL, nextVal);
+    setValue(value) {
+      self.value = clamp(0, MAX_MARK_VAL, value);
     },
   }));
 
@@ -79,14 +79,22 @@ export const ProgressTrack = types
     get totalProgress() {
       return sumProgress(self.marks);
     },
+    get isComplete() {
+      return self.totalProgress >= MAX_MARK_VAL * self.marks.length;
+    },
   }))
   .actions((self) => ({
     markProgress() {
+      if (self.isComplete) {
+        return;
+      }
+
       const lastProgress = self.totalProgress;
       const nextProgress = getProgressForDifficulty(
         lastProgress,
         self.difficulty,
       );
+
       let delta = nextProgress - lastProgress;
 
       self.marks.forEach((mark) => {

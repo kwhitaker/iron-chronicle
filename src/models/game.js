@@ -16,7 +16,7 @@ export const Game = types
       self.journal = nextVal;
     },
     addRollResult(nextResult) {
-      self.rolls.push(nextResult);
+      self.rolls.set(nextResult.id, nextResult);
     },
   }))
   .views((self) => ({
