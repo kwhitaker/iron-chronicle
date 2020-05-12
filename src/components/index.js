@@ -6,3 +6,5 @@ export * from './Momentum';
 export * from './ProgressTrack';
 export * from './Stats';
 export * from './Vows';
+export * from './Inputs';
+export * from './Label';

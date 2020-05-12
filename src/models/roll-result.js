@@ -12,7 +12,7 @@ export const RollResult = types
     title: types.string,
     description: types.maybeNull(types.string),
     outcome: types.maybeNull(types.string),
-    adds: types.number,
+    adds: types.maybeNull(types.number),
     rolls: types.array(types.number),
     stat: types.model('Roll Result Stat', {
       name: types.string,

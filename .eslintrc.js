@@ -26,6 +26,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'no-param-reassign': 0,
     'import/prefer-default-export': 0,
+    'jsx-a11y/label-has-associated-control': 0,
   },
   env: {
     jest: false,

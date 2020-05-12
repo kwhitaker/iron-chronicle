@@ -1,5 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
+import { Input, TextArea } from '../Inputs';
+import { Label } from '../Label';
 
 const colors = {
   weak: 'bg-gray-500',
@@ -78,38 +80,47 @@ export const RollResult = observer(({ result, onRequestClose }) => {
 
   return (
     <div className="py-4 px-2 text-left">
-      <div className="flex items-center">
-        <input
-          id="title"
-          value={title}
-          onChange={handleTitleUpdated}
-          className="flex-auto mr-2 h-10 p-2 text-lg bg-gray-200 border border-black"
-          placeholder="Title"
-          ref={titleRef}
-        />
+      <div className="flex items-bottom">
+        <Label htmlFor="title" className="flex-auto mr-2">
+          <Label.Text>Title</Label.Text>
+          <Input
+            id="title"
+            value={title}
+            onChange={handleTitleUpdated}
+            placeholder="Title"
+            ref={titleRef}
+          />
+        </Label>
         <ResultHit rolls={rolls} hitType={result.hitType} />
       </div>
       <div className="mt-4">
-        <input
-          id="outcome"
-          value={outcome || ''}
-          onChange={handleOutcomeUpdated}
-          className="block p-2 w-full h-full text-lg bg-gray-200 border border-black"
-          placeholder="Outcome"
-        />
+        <Label htmlFor="outcome">
+          <Label.Text>Outcome</Label.Text>
+          <Input
+            id="outcome"
+            value={outcome || ''}
+            onChange={handleOutcomeUpdated}
+            placeholder="Mark 1 progress, -1 health, etc."
+          />
+        </Label>
       </div>
       <div className="mt-4">
-        <input
-          id="description"
-          value={description || ''}
-          onChange={handleDescriptionUpdated}
-          className="block p-2 w-full h-full text-lg bg-gray-200 border border-black"
-          placeholder="Description"
-        />
+        <Label htmlFor="description">
+          <Label.Text>Description</Label.Text>
+          <TextArea
+            id="description"
+            value={description || ''}
+            onChange={handleDescriptionUpdated}
+            placeholder="Narrative description..."
+            noresize
+          >
+            {description}
+          </TextArea>
+        </Label>
       </div>
       <div className="mt-4 pt-3 flex justify-end border-t border-gray-600">
         <button
-          className="bg-gray-500 p-2 uppercase"
+          className="bg-gray-300 p-2 uppercase"
           type="button"
           onClick={onRequestClose}
         >

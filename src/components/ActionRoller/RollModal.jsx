@@ -1,18 +1,18 @@
-import isNaN from 'lodash/fp/isNaN';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '../../models';
 import { Modal, ModalHeader } from '../Modal';
 import { actionRoll } from './action-roll';
 import { RollResult } from './RollResult';
+import { Label } from '../Label';
+import { Input } from '../Inputs';
 
 export const RollModal = observer(
   ({ onRequestClose, stat: { name, value } }) => {
     const { currentGame } = useAppStore();
     const [latestResult, setLatestResult] = useState();
     const [adds, setAdds] = useState(0);
-
-    const addsRef = useRef();
+    const addsRef = useRef(null);
 
     useEffect(() => {
       if (addsRef.current) {
@@ -22,10 +22,6 @@ export const RollModal = observer(
 
     const handleAddsUpdated = (e) => {
       const next = Number(e.currentTarget.value);
-
-      if (isNaN(next)) {
-        return;
-      }
 
       setAdds(next);
     };
@@ -53,16 +49,16 @@ export const RollModal = observer(
         </ModalHeader>
         {!hasResult && (
           <div className="flex items-center justify-between py-4 px-2 text-left">
-            <label htmlFor="adds" className="flex items-center">
-              <span className="mr-2 uppercase">Adds:</span>
-              <input
+            <Label htmlFor="adds" inline>
+              <Label.Text inline>Adds:</Label.Text>
+              <Input
                 id="adds"
                 value={adds}
-                className="p-1 w-8 bg-transparent border border-black text-center"
+                className="w-8"
                 ref={addsRef}
                 onChange={handleAddsUpdated}
               />
-            </label>
+            </Label>
             <div>
               <button
                 type="button"
