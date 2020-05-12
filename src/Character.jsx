@@ -1,21 +1,31 @@
 import isNaN from 'lodash/fp/isNaN';
 import { observer } from 'mobx-react-lite';
-import React from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import React, { useState } from 'react';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import {
-  Momentum,
-  Stats,
   Attributes,
-  Vows,
   Bonds,
-  MiscProgress,
   Input,
   Label,
+  MiscProgress,
+  Momentum,
+  Stats,
+  Vows,
+  Assets,
+  Journal,
 } from './components';
 import { useAppStore } from './models';
+import {
+  tabClasses,
+  tabContentClasses,
+  tabListClasses,
+  tabsClasses,
+} from './utils';
 
 export const Character = observer(() => {
-  const { characters } = useAppStore();
+  const { characters, currentGame } = useAppStore();
+  const [tabIndex, setTabIndex] = useState(0);
+  const { journal } = currentGame;
   const character = characters[0];
 
   const handleNameUpdated = (e) => {
@@ -65,41 +75,29 @@ export const Character = observer(() => {
         <div className="w-10/12 px-2 h-full overflow-y-auto">
           <div className="h-full flex flex-col">
             <Attributes attributes={character.attributes} />
-            <Tabs className="mx-2 my-4">
-              <TabList className="flex">
-                <Tab className="flex-1 mr-2">
-                  <button
-                    type="button"
-                    role="tab"
-                    className="text-center block border border-gray-200 rounded-sm py-2 px-4 bg-gray-200 hover:bg-blue-200 hover:text-blue"
-                  >
-                    Bonds
-                  </button>
+            <Tabs
+              className={tabsClasses}
+              selectedIndex={tabIndex}
+              onSelect={(nextIdx) => setTabIndex(nextIdx)}
+            >
+              <TabList className={tabListClasses}>
+                <Tab className={tabClasses(false)}>
+                  <div className={tabContentClasses(tabIndex === 0)}>Bonds</div>
                 </Tab>
-                <Tab className="flex-1 mr-2">
-                  <button
-                    type="button"
-                    role="tab"
-                    className="text-center block border border-gray-200 rounded-sm py-2 px-4 bg-gray-200 hover:bg-blue-200 hover:text-blue"
-                  >
-                    Vows
-                  </button>
+                <Tab className={tabClasses(false)}>
+                  <div className={tabContentClasses(tabIndex === 1)}>Vows</div>
                 </Tab>
-                <Tab className="flex-1 mr-2">
-                  <button
-                    type="button"
-                    role="tab"
-                    className="text-center block border border-gray-200 rounded-sm py-2 px-4 bg-gray-200 hover:bg-blue-200 hover:text-blue"
-                  >
-                    Other
-                  </button>
+                <Tab className={tabClasses(false)}>
+                  <div className={tabContentClasses(tabIndex === 2)}>Other</div>
                 </Tab>
-                <Tab className="flex-1">
-                  <div
-                    role="tab"
-                    className="text-center block border border-gray-200 rounded-sm py-2 px-4 bg-gray-200 hover:bg-blue-200 hover:text-blue"
-                  >
+                <Tab className={tabClasses(false)}>
+                  <div className={tabContentClasses(tabIndex === 4)}>
                     Assets
+                  </div>
+                </Tab>
+                <Tab className={tabClasses(false)}>
+                  <div className={tabContentClasses(tabIndex === 5)}>
+                    Journal
                   </div>
                 </Tab>
               </TabList>
@@ -112,7 +110,12 @@ export const Character = observer(() => {
               <TabPanel>
                 <MiscProgress tracks={character.miscProgress} />
               </TabPanel>
-              <TabPanel>Assets</TabPanel>
+              <TabPanel>
+                <Assets assets={character.assets} />
+              </TabPanel>
+              <TabPanel>
+                <Journal journal={journal} />
+              </TabPanel>
             </Tabs>
           </div>
         </div>

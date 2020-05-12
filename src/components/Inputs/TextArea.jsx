@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
-const classes = classnames([
+const classes = clsx([
   'block',
   'w-full',
   'bg-gray-200',
@@ -16,12 +16,7 @@ const classes = classnames([
 ]);
 
 export const TextArea = forwardRef(({ className, children, ...props }, ref) => (
-  <textarea
-    rows={6}
-    {...props}
-    ref={ref}
-    className={classnames(classes, className)}
-  >
+  <textarea rows={6} {...props} ref={ref} className={clsx(classes, className)}>
     {children}
   </textarea>
 ));

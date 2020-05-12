@@ -9,12 +9,16 @@ export const assetTypes = {
 
 export const AssetAbility = types
   .model('Asset Ability', {
+    id: types.identifier,
     description: types.string,
     available: types.boolean,
   })
   .actions((self) => ({
     toggleAvailable() {
       self.available = !self.available;
+    },
+    setDescription(nextDesc) {
+      self.description = nextDesc;
     },
   }));
 

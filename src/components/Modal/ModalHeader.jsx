@@ -1,10 +1,10 @@
 import React from 'react';
 import CloseIcon from 'mdi-react/CloseIcon';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 export const ModalHeader = ({ children, onRequestClose, ...props }) => (
   <div
-    className={classnames(
+    className={clsx(
       'flex justify-between items-center pb-2 border-b border-gray-600',
     )}
     {...props}

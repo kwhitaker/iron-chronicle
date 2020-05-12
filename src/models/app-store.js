@@ -1,4 +1,5 @@
 import range from 'lodash/fp/range';
+import { LoremIpsum } from 'lorem-ipsum';
 import { onPatch, types } from 'mobx-state-tree';
 import { createContext, useContext } from 'react';
 import { Character } from './character';
@@ -11,7 +12,24 @@ const AppStore = types.model('App Store', {
 });
 
 export const appStore = AppStore.create({
-  games: [{ id: 'foo', title: 'test game', characters: {}, rolls: {} }],
+  games: [
+    {
+      id: 'foo',
+      title: 'test game',
+      characters: {},
+      rolls: {},
+      journal: new LoremIpsum({
+        sentencesPerParagraph: {
+          max: 8,
+          min: 4,
+        },
+        wordsPerSentence: {
+          max: 16,
+          min: 4,
+        },
+      }).generateParagraphs(20),
+    },
+  ],
   currentGame: 'foo',
   characters: [
     {
@@ -91,7 +109,18 @@ export const appStore = AppStore.create({
           difficulty: 'extreme',
         },
       ],
-      assets: [],
+      assets: [
+        {
+          id: 'asset1',
+          name: 'test asset',
+          type: 'companion',
+          health: 3,
+          abilities: [
+            { id: 'ability1', description: 'foo', available: true },
+            { id: 'ability2', description: 'bar', available: false },
+          ],
+        },
+      ],
     },
   ],
 });

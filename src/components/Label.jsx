@@ -1,11 +1,11 @@
 import React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
-const textClasses = classnames(['uppercase', 'cursor-pointer', 'font-bold']);
+const textClasses = clsx(['uppercase', 'cursor-pointer', 'font-bold']);
 
 const LabelText = ({ className, inline, ...props }) => (
   <span
-    className={classnames(textClasses, className, {
+    className={clsx(textClasses, className, {
       'mb-2': !inline,
       'mr-2': inline,
     })}
@@ -13,12 +13,12 @@ const LabelText = ({ className, inline, ...props }) => (
   />
 );
 
-const labelClasses = classnames(['flex']);
+const labelClasses = clsx(['flex']);
 
 export const LabelWrapper = ({ className, inline, ...props }) => (
   <label
     {...props}
-    className={classnames(labelClasses, className, {
+    className={clsx(labelClasses, className, {
       'flex-col': !inline,
       'items-center': inline,
     })}

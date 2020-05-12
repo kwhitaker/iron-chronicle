@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
-const overlayClasses = classnames([
+const overlayClasses = clsx([
   'fixed',
   'flex',
   'flex-column',
@@ -16,7 +16,7 @@ const overlayClasses = classnames([
   'left-0',
 ]);
 
-const contentClasses = classnames([
+const contentClasses = clsx([
   'bg-white',
   'p-4',
   'm-4',
@@ -34,7 +34,7 @@ const contentClasses = classnames([
 
 export const Modal = ({ className = '', ...props }) => (
   <ReactModal
-    className={classnames(contentClasses, className)}
+    className={clsx(contentClasses, className)}
     overlayClassName={overlayClasses}
     {...props}
   />

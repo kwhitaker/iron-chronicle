@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 const classes = [
   'bg-gray-200',
@@ -13,7 +13,7 @@ const classes = [
 ];
 
 export const Input = forwardRef(({ className, ...props }, ref) => (
-  <input {...props} className={classnames(classes, className)} ref={ref} />
+  <input {...props} className={clsx(classes, className)} ref={ref} />
 ));
 
 Input.displayName = 'Input';

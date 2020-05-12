@@ -8,3 +8,6 @@ export * from './Stats';
 export * from './Vows';
 export * from './Inputs';
 export * from './Label';
+export * from './Assets';
+export * from './CharacterTab';
+export * from './Journal';
