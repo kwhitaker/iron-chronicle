@@ -1,19 +1,29 @@
 import React from 'react';
 import CloseIcon from 'mdi-react/CloseIcon';
 import clsx from 'clsx';
+import { Button } from '../Buttons';
 
-export const ModalHeader = ({ children, onRequestClose, ...props }) => (
-  <div
-    className={clsx(
-      'flex justify-between items-center pb-2 border-b border-gray-600',
-    )}
-    {...props}
-  >
+const classes = clsx([
+  'flex',
+  'justify-between',
+  'items-center',
+  'pb-2',
+  'border-b',
+  'border-gray-600',
+]);
+
+export const ModalHeader = ({
+  children,
+  className,
+  onRequestClose,
+  ...props
+}) => (
+  <div className={clsx(classes, className)} {...props}>
     {children}
     {onRequestClose && (
-      <button onClick={onRequestClose} type="button" className="block ml-4">
+      <Button onClick={onRequestClose} className="block ml-4">
         <CloseIcon size={24} />
-      </button>
+      </Button>
     )}
   </div>
 );

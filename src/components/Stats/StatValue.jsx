@@ -1,6 +1,7 @@
 import React from 'react';
+import clsx from 'clsx';
 
-const defaultClasses = [
+const defaultClasses = clsx([
   'border-b',
   'border-black',
   'font-bold',
@@ -11,20 +12,16 @@ const defaultClasses = [
   'justify-center',
   'items-center',
   'cursor-pointer',
-];
+]);
 
-const activeClasses = ['bg-gray-200'];
-
-export const StatValue = ({ value, active, onClick }) => {
-  let classes = defaultClasses;
-
-  if (active) {
-    classes = classes.concat(activeClasses);
-  }
-
-  return (
-    <button className={classes.join(' ')} onClick={onClick} type="button">
-      +{value}
-    </button>
-  );
-};
+export const StatValue = ({ value, active, onClick }) => (
+  <button
+    className={clsx(defaultClasses, {
+      'bg-gray-200': active,
+    })}
+    onClick={onClick}
+    type="button"
+  >
+    +{value}
+  </button>
+);

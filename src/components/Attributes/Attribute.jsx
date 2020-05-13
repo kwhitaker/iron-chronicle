@@ -22,7 +22,7 @@ export const Attribute = observer(({ attribute }) => {
             className="w-full mb-2 p-3 text-4xl text-center bg-transparent focus:bg-blue-200"
             onChange={handleValueUpdated}
           />
-          <span className="flex justify-center items-center uppercase text-lg font-black">
+          <span className="flex justify-center items-center pb-2 uppercase text-lg font-black">
             {name}
             <ActionRoller stat={attribute} />
           </span>

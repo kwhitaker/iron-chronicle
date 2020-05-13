@@ -23,9 +23,8 @@ import {
 } from './utils';
 
 export const Character = observer(() => {
-  const { characters, currentGame } = useAppStore();
+  const { characters } = useAppStore();
   const [tabIndex, setTabIndex] = useState(0);
-  const { journal } = currentGame;
   const character = characters[0];
 
   const handleNameUpdated = (e) => {
@@ -91,12 +90,12 @@ export const Character = observer(() => {
                   <div className={tabContentClasses(tabIndex === 2)}>Other</div>
                 </Tab>
                 <Tab className={tabClasses(false)}>
-                  <div className={tabContentClasses(tabIndex === 4)}>
+                  <div className={tabContentClasses(tabIndex === 3)}>
                     Assets
                   </div>
                 </Tab>
                 <Tab className={tabClasses(false)}>
-                  <div className={tabContentClasses(tabIndex === 5)}>
+                  <div className={tabContentClasses(tabIndex === 4)}>
                     Journal
                   </div>
                 </Tab>
@@ -114,7 +113,7 @@ export const Character = observer(() => {
                 <Assets assets={character.assets} />
               </TabPanel>
               <TabPanel>
-                <Journal journal={journal} />
+                <Journal />
               </TabPanel>
             </Tabs>
           </div>

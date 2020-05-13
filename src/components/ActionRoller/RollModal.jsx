@@ -1,11 +1,12 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '../../models';
-import { Modal, ModalHeader } from '../Modal';
+import { Modal } from '../Modal';
 import { actionRoll } from './action-roll';
 import { RollResult } from './RollResult';
 import { Label } from '../Label';
 import { Input } from '../Inputs';
+import { BlueButton } from '../Buttons';
 
 export const RollModal = observer(
   ({ onRequestClose, stat: { name, value } }) => {
@@ -42,11 +43,11 @@ export const RollModal = observer(
         onRequestClose={onRequestClose}
         className={hasResult ? 'w-1/2' : 'w-1/4'}
       >
-        <ModalHeader onRequestClose={onRequestClose}>
+        <Modal.Header onRequestClose={onRequestClose}>
           <div className="text-lg font-black uppercase">
             <h2>Roll {name}</h2>
           </div>
-        </ModalHeader>
+        </Modal.Header>
         {!hasResult && (
           <div className="flex items-center justify-between py-4 px-2 text-left">
             <Label htmlFor="adds" inline>
@@ -60,13 +61,7 @@ export const RollModal = observer(
               />
             </Label>
             <div>
-              <button
-                type="button"
-                className="p-2 bg-blue-500 text-white hover:bg-blue-700 uppercase"
-                onClick={handleActionRolled}
-              >
-                Roll
-              </button>
+              <BlueButton onClick={handleActionRolled}>Roll</BlueButton>
             </div>
           </div>
         )}

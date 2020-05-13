@@ -1,5 +1,4 @@
 import range from 'lodash/fp/range';
-import { LoremIpsum } from 'lorem-ipsum';
 import { onPatch, types } from 'mobx-state-tree';
 import { createContext, useContext } from 'react';
 import { Character } from './character';
@@ -9,6 +8,7 @@ const AppStore = types.model('App Store', {
   games: types.array(Game),
   characters: types.array(Character),
   currentGame: types.reference(Game),
+  currentCharacter: types.reference(Character),
 });
 
 export const appStore = AppStore.create({
@@ -18,19 +18,11 @@ export const appStore = AppStore.create({
       title: 'test game',
       characters: {},
       rolls: {},
-      journal: new LoremIpsum({
-        sentencesPerParagraph: {
-          max: 8,
-          min: 4,
-        },
-        wordsPerSentence: {
-          max: 16,
-          min: 4,
-        },
-      }).generateParagraphs(20),
+      journal: '',
     },
   ],
   currentGame: 'foo',
+  currentCharacter: 'bar',
   characters: [
     {
       id: 'bar',

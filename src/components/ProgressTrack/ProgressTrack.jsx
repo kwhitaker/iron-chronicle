@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { difficultyLevels } from '../../models';
 import { ProgressMark } from './ProgressMark';
+import { Button } from '../Buttons';
 
 export const ProgressTrack = observer(
   ({
@@ -34,21 +35,16 @@ export const ProgressTrack = observer(
         <div className="w-10/12 p-2 flex justify-between items-center bg-gray-200 border border-gray-600">
           <h4 className="text-lg font-bold flex-auto">{name}</h4>
           <div className="mx-2 flex flex-grow-0">
-            <button
-              type="button"
-              title="Edit Track"
-              className="block mr-2 bg-transparent"
-            >
+            <Button title="Edit Track" className="block mr-2">
               <FeatherIcon size={16} />
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
               title="Clear Progress"
-              className="block bg-transparent"
+              className="block"
               onClick={handleProgressReset}
             >
               <CloseIcon size={16} />
-            </button>
+            </Button>
           </div>
           {showDifficulty && (
             <div className="border-l-2 border-gray-600 pl-2">

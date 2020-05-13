@@ -1,7 +1,8 @@
 import DiceMultipleIcon from 'mdi-react/DiceMultipleIcon';
-import React from 'react';
 import { observer } from 'mobx-react-lite';
+import React from 'react';
 import { useModal } from 'react-modal-hook';
+import { Button } from '../Buttons';
 import { RollModal } from './RollModal';
 
 export const ActionRoller = observer(({ stat, inverted = false }) => {
@@ -11,17 +12,16 @@ export const ActionRoller = observer(({ stat, inverted = false }) => {
   ));
 
   return (
-    <button
-      className={`block ml-2 p-1 rounded-sm transition-colors duration-200 bg-transparent ${
+    <Button
+      className={`block ml-2 p-1 ${
         inverted
           ? 'hover:bg-white hover:text-black'
           : 'hover:bg-black hover:text-white'
       }`}
-      type="button"
       title={`Roll ${name}`}
       onClick={showModal}
     >
       <DiceMultipleIcon size={18} />
-    </button>
+    </Button>
   );
 });

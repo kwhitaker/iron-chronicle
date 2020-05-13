@@ -3,6 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import { Input, TextArea } from '../Inputs';
 import { Label } from '../Label';
 import { ResultHit } from '../ResultHit';
+import { Modal } from '../Modal';
+import { BlueButton } from '../Buttons';
 
 export const RollResult = observer(({ result, onRequestClose }) => {
   const {
@@ -78,15 +80,9 @@ export const RollResult = observer(({ result, onRequestClose }) => {
           </TextArea>
         </Label>
       </div>
-      <div className="mt-4 pt-3 flex justify-end border-t border-gray-600">
-        <button
-          className="bg-gray-300 p-2 uppercase"
-          type="button"
-          onClick={onRequestClose}
-        >
-          Done
-        </button>
-      </div>
+      <Modal.Footer>
+        <BlueButton onClick={onRequestClose}>Done</BlueButton>
+      </Modal.Footer>
     </div>
   );
 });
