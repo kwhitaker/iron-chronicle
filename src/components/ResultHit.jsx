@@ -24,7 +24,10 @@ const ActionResult = ({ value = 1 }) => (
   </div>
 );
 
-export const ResultHit = ({ rolls = [1, 1, 1], hitType = 'weak' }) => {
+export const ResultHit = ({
+  rolls: [challenge1 = 1, challenge2 = 1, action = 0],
+  hitType = 'weak',
+}) => {
   return (
     <div
       className={`flex flex-grow-0 justify-center items-center p-2 text-white ${colors[hitType]} border ${borders[hitType]}`}
@@ -33,9 +36,9 @@ export const ResultHit = ({ rolls = [1, 1, 1], hitType = 'weak' }) => {
         {hitType === 'miss' ? 'Miss' : `${hitType} Hit`}
       </strong>
       <div className="flex">
-        <ChallengeResult value={rolls[0]} />
-        <ChallengeResult value={rolls[1]} />
-        <ActionResult value={rolls[2]} />
+        <ChallengeResult value={challenge1} />
+        <ChallengeResult value={challenge2} />
+        {!!action && <ActionResult value={action} />}
       </div>
     </div>
   );

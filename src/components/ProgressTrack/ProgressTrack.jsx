@@ -1,10 +1,11 @@
 import CloseIcon from 'mdi-react/CloseIcon';
 import FeatherIcon from 'mdi-react/FeatherIcon';
 import { observer } from 'mobx-react-lite';
-import React from 'react';
-import { difficultyLevels } from '../../models';
+import React, { useState } from 'react';
+import { difficultyLevels, useAppStore } from '../../models';
+import { progressRoll, RollModal } from '../ActionRoller';
+import { Button, DiceButton } from '../Buttons';
 import { ProgressMark } from './ProgressMark';
-import { Button } from '../Buttons';
 
 export const ProgressTrack = observer(
   ({
@@ -15,15 +16,27 @@ export const ProgressTrack = observer(
       markProgress,
       isComplete,
       resetProgress,
+      completedMarks,
     },
     showDifficulty = true,
   }) => {
+    const [progressResult, setProgressResult] = useState(null);
+    const { currentGame } = useAppStore();
+
+    const clearResult = () => setProgressResult(null);
+
     const handleProgressMarked = () => {
       markProgress();
     };
 
     const handleProgressReset = () => {
       resetProgress();
+    };
+
+    const handleProgressRolled = () => {
+      const result = progressRoll(completedMarks);
+      currentGame.addRollResult(result);
+      setProgressResult(result);
     };
 
     const progressMarks = marks.map((mark) => (
@@ -35,6 +48,7 @@ export const ProgressTrack = observer(
         <div className="w-10/12 p-2 flex justify-between items-center bg-gray-200 border border-gray-600">
           <h4 className="text-lg font-bold flex-auto">{name}</h4>
           <div className="mx-2 flex flex-grow-0">
+            <DiceButton onClick={handleProgressRolled} />
             <Button title="Edit Track" className="block mr-2">
               <FeatherIcon size={16} />
             </Button>
@@ -63,6 +77,13 @@ export const ProgressTrack = observer(
         >
           {progressMarks}
         </button>
+        {!!progressResult && (
+          <RollModal
+            stat={{ name: 'progress', value: completedMarks }}
+            result={progressResult}
+            onRequestClose={clearResult}
+          />
+        )}
       </div>
     );
   },

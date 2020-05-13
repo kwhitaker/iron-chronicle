@@ -31,3 +31,21 @@ export const actionRoll = (stat = null, adds = 0) => {
     adds,
   });
 };
+
+export const progressRoll = (progress = 0) => {
+  const challenge1 = d10();
+  const challenge2 = d10();
+  const dateRolled = Date.now();
+  const title = `progress roll: ${format(dateRolled, 'PP pp')}`;
+
+  return RollResult.create({
+    id: shortid(),
+    dateRolled,
+    title,
+    stat: {
+      name: 'progress',
+      value: progress,
+    },
+    rolls: [challenge1, challenge2, 0],
+  });
+};

@@ -35,6 +35,14 @@ export const RollResult = types
 
       return hitTypes.weak;
     },
+    get isMatch() {
+      const [challenge1, challenge2] = self.rolls;
+
+      return challenge1 === challenge2;
+    },
+    get isProgress() {
+      return self.stat.name === 'progress';
+    },
   }))
   .actions((self) => ({
     setDescription(nextDesc) {

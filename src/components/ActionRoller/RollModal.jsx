@@ -9,9 +9,9 @@ import { Input } from '../Inputs';
 import { BlueButton } from '../Buttons';
 
 export const RollModal = observer(
-  ({ onRequestClose, stat: { name, value } }) => {
+  ({ onRequestClose, stat: { name, value }, result = null }) => {
     const { currentGame } = useAppStore();
-    const [latestResult, setLatestResult] = useState();
+    const [latestResult, setLatestResult] = useState(result);
     const [adds, setAdds] = useState(0);
     const addsRef = useRef(null);
 
@@ -29,10 +29,10 @@ export const RollModal = observer(
 
     const handleActionRolled = (e) => {
       e.preventDefault();
-      const result = actionRoll({ name, value }, adds);
+      const nextResult = actionRoll({ name, value }, adds);
 
-      currentGame.addRollResult(result);
-      setLatestResult(result);
+      currentGame.addRollResult(nextResult);
+      setLatestResult(nextResult);
     };
 
     const hasResult = !!latestResult;

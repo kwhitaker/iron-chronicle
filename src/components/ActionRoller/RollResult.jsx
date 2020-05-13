@@ -41,7 +41,7 @@ export const RollResult = observer(({ result, onRequestClose }) => {
   };
 
   return (
-    <div className="py-4 px-2 text-left">
+    <form className="py-4 px-2 text-left" onSubmit={onRequestClose}>
       <div className="flex items-bottom">
         <Label htmlFor="title" className="flex-auto mr-2">
           <Label.Text>Title</Label.Text>
@@ -74,15 +74,17 @@ export const RollResult = observer(({ result, onRequestClose }) => {
             value={description || ''}
             onChange={handleDescriptionUpdated}
             placeholder="Narrative description..."
-            noresize
+            noresize="true"
           >
             {description}
           </TextArea>
         </Label>
       </div>
       <Modal.Footer>
-        <BlueButton onClick={onRequestClose}>Done</BlueButton>
+        <BlueButton onClick={onRequestClose} type="submit">
+          Done
+        </BlueButton>
       </Modal.Footer>
-    </div>
+    </form>
   );
 });

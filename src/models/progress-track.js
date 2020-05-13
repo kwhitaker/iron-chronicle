@@ -79,6 +79,9 @@ export const ProgressTrack = types
     get totalProgress() {
       return sumProgress(self.marks);
     },
+    get completedMarks() {
+      return self.marks.filter((m) => m.value === MAX_MARK_VAL).length;
+    },
     get isComplete() {
       return self.totalProgress >= MAX_MARK_VAL * self.marks.length;
     },

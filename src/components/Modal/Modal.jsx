@@ -16,6 +16,7 @@ const overlayClasses = clsx([
   'bg-opacity-75',
   'top-0',
   'left-0',
+  'z-50',
 ]);
 
 const contentClasses = clsx([
