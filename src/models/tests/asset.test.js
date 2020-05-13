@@ -4,6 +4,7 @@ import { AssetAbility } from '../asset';
 describe('AssetAbility.toggleAvailable()', async (assert) => {
   const toggler = (available) => {
     const ability = AssetAbility.create({
+      id: 'foo',
       description: 'foo',
       available,
     });

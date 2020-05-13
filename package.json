@@ -24,14 +24,14 @@
     "tailwindcss": "^1.4.6"
   },
   "scripts": {
-    "start": "npm run watch:css && react-scripts start",
-    "build": "npm run build:css && react-scripts build",
-    "test": "watch 'clear && yarn -s rite' src",
-    "rite": "riteway -r @babel/register -r @babel/polyfill 'src/**/*.test.js' | tap-color",
+    "start": "cross-env yarn run watch:css && react-scripts start",
+    "build": "cross-env yarn run build:css && react-scripts build",
+    "test": "cross-env watch 'clear && yarn -s rite' src",
+    "rite": "cross-env riteway -r @babel/register -r @babel/polyfill 'src/**/*.test.js' | tap-color",
     "eject": "react-scripts eject",
-    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
-    "lint": "eslint --fix --ext .js,.jsx ./src"
+    "build:css": "cross-env postcss src/assets/tailwind.css -o src/assets/main.css",
+    "watch:css": "cross-env postcss src/assets/tailwind.css -o src/assets/main.css",
+    "lint": "cross-env eslint --fix --ext .js,.jsx ./src"
   },
   "husky": {
     "hooks": {
@@ -59,6 +59,7 @@
     "@babel/register": "^7.9.0",
     "autoprefixer": "^9.7.6",
     "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.2",

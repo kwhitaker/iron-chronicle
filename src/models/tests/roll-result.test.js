@@ -1,6 +1,7 @@
+import { unprotect } from 'mobx-state-tree';
 import { describe } from 'riteway';
 import shortid from 'shortid';
-import { RollResult, hitTypes } from '../roll-result';
+import { hitTypes, RollResult } from '../roll-result';
 
 describe('RollResult.setDescription()', async (assert) => {
   const setter = (description, nextDesc) => {
@@ -162,5 +163,73 @@ describe('RollResult.hitType', async (assert) => {
     should: `return ${hitTypes.miss}`,
     actual: getter(miss),
     expected: hitTypes.miss,
+  });
+});
+
+describe('RollResult.isMatch', async (assert) => {
+  const result = RollResult.create({
+    id: shortid(),
+    name: 'foo',
+    adds: 0,
+    rolls: [1, 1, 1],
+    outcome: '',
+    title: 'foo',
+    stat: {
+      name: 'edge',
+      value: 1,
+    },
+    dateRolled: Date.now(),
+  });
+
+  assert({
+    given: 'the two challenge rolls are the same',
+    should: 'return true',
+    actual: result.isMatch,
+    expected: true,
+  });
+
+  unprotect(result);
+
+  result.rolls = [1, 2, 1];
+
+  assert({
+    given: 'the two challenge rolls are different',
+    should: 'return false',
+    actual: result.isMatch,
+    expected: false,
+  });
+});
+
+describe('RollResult.isProgress', async (assert) => {
+  const result = RollResult.create({
+    id: shortid(),
+    name: 'foo',
+    adds: 0,
+    rolls: [1, 1, 1],
+    outcome: '',
+    title: 'foo',
+    stat: {
+      name: 'progress',
+      value: 1,
+    },
+    dateRolled: Date.now(),
+  });
+
+  unprotect(result);
+
+  assert({
+    given: 'the stat name is "progress"',
+    should: 'returns true',
+    actual: result.isProgress,
+    expected: true,
+  });
+
+  result.stat.name = 'health';
+
+  assert({
+    given: 'the stat name is not "progress"',
+    should: 'returns false',
+    actual: result.isProgress,
+    expected: false,
   });
 });

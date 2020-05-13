@@ -1,4 +1,5 @@
 import times from 'lodash/fp/times';
+import { unprotect } from 'mobx-state-tree';
 import { describe } from 'riteway';
 import shortid from 'shortid';
 import {
@@ -193,6 +194,36 @@ describe('ProgressTrack.markProgress()', async (assert) => {
     given: 'a track has progress',
     should: 'reset it to 0',
     actual: resetter(),
+    expected: 0,
+  });
+});
+
+describe('ProgressTrack.completedMarks', async (assert) => {
+  const track = ProgressTrack.create({
+    id: shortid(),
+    name: 'foo',
+    type: progressTrackTypes.vow,
+    difficulty: difficultyLevels.troublesome,
+    marks: makeMarks(2),
+  });
+
+  unprotect(track);
+  track.marks[0].value = MAX_MARK_VAL;
+  track.marks[1].value = 1;
+
+  assert({
+    given: 'it has completed marks',
+    should: 'return the number of completed marks',
+    actual: track.completedMarks,
+    expected: 1,
+  });
+
+  track.marks[0].value = 1;
+
+  assert({
+    given: 'it has no completed marks',
+    should: 'return 0',
+    actual: track.completedMarks,
     expected: 0,
   });
 });

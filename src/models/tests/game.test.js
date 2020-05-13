@@ -31,7 +31,7 @@ describe('Game.setJournal()', async (assert) => {
   });
 });
 
-describe.only('Game.rollsDesc()', async (assert) => {
+describe('Game.rollsDesc()', async (assert) => {
   const now = Date.now();
   const r1 = RollResult.create({
     id: '1',

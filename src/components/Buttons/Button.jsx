@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 
@@ -11,7 +12,6 @@ const classes = clsx([
 
 export const Button = forwardRef(
   ({ className, type = 'button', ...props }, ref) => (
-    // eslint-disable-next-line react/button-has-type
     <button
       ref={ref}
       className={clsx(classes, className)}
