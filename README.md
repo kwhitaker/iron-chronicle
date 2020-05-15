@@ -1,3 +1,50 @@
 # Iron Chronicle
 
 A player aid for the Ironsworn RPG.
+
+## Todo:
+
+- [x] Show character
+- [x] Edit character
+- [x] View momentum
+- [x] Change momentum
+- [x] Reset momentum
+- [x] Set max momentum
+- [x] View attributes
+- [x] Change attributes
+- [x] Roll attributes
+- [x] View stats
+- [x] Change stats
+- [x] Roll stats
+- [x] View bonds
+- [x] Roll bond
+- [x] Reset bond
+- [x] Mark progreess
+- [x] View vows
+- [x] Roll vow
+- [x] Reset vow
+- [x] View misc progress
+- [x] Roll mis progress
+- [x] Reset roll misc progress
+- [x] View journal
+- [x] Edit journal
+- [x] Support markdown in journal
+- [ ] Debilities
+- [ ] Create bonds
+- [ ] Edit bonds
+- [ ] Create vows
+- [ ] Edit vows
+- [ ] Create misc progress
+- [ ] Edit misc progress
+- [ ] View assets
+- [ ] Creaete assets
+- [ ] Edit assets
+- [ ] Save to storage
+- [ ] Load from storage
+- [ ] Create game
+- [ ] List games
+- [ ] Delete game
+- [ ] Create character
+- [ ] List characters in a game
+- [ ] Delete character
+- [ ] View roll log for a game

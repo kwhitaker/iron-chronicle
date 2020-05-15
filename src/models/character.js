@@ -7,6 +7,8 @@ import { ProgressTrack } from './progress-track';
 import { Attribute } from './attribute';
 import { Asset } from './asset';
 
+const trackKeys = ['vows', 'bonds', 'miscProgress'];
+
 export const Character = types
   .model({
     name: types.string,
@@ -28,5 +30,16 @@ export const Character = types
     },
     setName(nextName) {
       self.name = nextName;
+    },
+    addProgressTrack(category = 'miscProgress', nextTrack) {
+      if (!nextTrack) {
+        throw new Error('No track provided to addProgressTrack');
+      }
+
+      if (!trackKeys.includes(category)) {
+        throw new Error('Invalid track category');
+      }
+
+      self[category].push(nextTrack);
     },
   }));
