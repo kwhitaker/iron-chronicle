@@ -47,7 +47,9 @@ export const ProgressTrack = observer(
     return (
       <div className="w-full my-4 flex flex-col justify-center items-center uppercase">
         <div className="w-10/12 p-2 flex justify-between items-center bg-gray-200 border border-gray-600">
-          <h4 className="text-lg font-bold flex-auto">{name}</h4>
+          <h4 className="text-lg font-bold flex-auto overflow-hidden truncate">
+            {name}
+          </h4>
           <div className="mx-2 flex flex-grow-0">
             <DiceButton onClick={handleProgressRolled} />
             <Button title="Edit Track" className="block mr-2" onClick={onEdit}>
@@ -62,9 +64,7 @@ export const ProgressTrack = observer(
             </Button>
           </div>
           {showDifficulty && (
-            <div className="border-l-2 border-gray-600 pl-2">
-              <strong>Difficulty:</strong> {difficulty}
-            </div>
+            <div className="border-l-2 border-gray-600 pl-2">{difficulty}</div>
           )}
         </div>
         <button

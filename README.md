@@ -32,12 +32,12 @@ A player aid for the Ironsworn RPG.
 - [ ] Debilities
 - [x] Create bonds
 - [x] Edit bonds
-- [ ] Create vows
-- [ ] Edit vows
-- [ ] Create misc progress
-- [ ] Edit misc progress
+- [x] Create vows
+- [x] Edit vows
+- [x] Create misc progress
+- [x] Edit misc progress
 - [ ] View assets
-- [ ] Creaete assets
+- [ ] Create assets
 - [ ] Edit assets
 - [ ] Save to storage
 - [ ] Load from storage
@@ -54,3 +54,4 @@ A player aid for the Ironsworn RPG.
 - [ ] Modal width prop
 - [ ] Notification center
 - [ ] Unit test coverage
+- [ ] Button tooltips
