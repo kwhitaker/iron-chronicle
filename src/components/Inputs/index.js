@@ -1,3 +1,4 @@
 export * from './Input';
-export * from './TextArea';
 export * from './InputError';
+export * from './Select';
+export * from './TextArea';

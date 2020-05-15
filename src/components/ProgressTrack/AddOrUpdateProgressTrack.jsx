@@ -1,22 +1,16 @@
 import { observer } from 'mobx-react-lite';
-import React, { useState } from 'react';
+import { getSnapshot } from 'mobx-state-tree';
+import React, { useState, useRef, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import shortid from 'shortid';
 import {
   difficultyLevels,
   progressTrackTypes,
   useAppStore,
 } from '../../models';
 import { BlueButton, GrayButton } from '../Buttons';
-import { Input, InputError } from '../Inputs';
+import { Input, InputError, Select } from '../Inputs';
 import { Label } from '../Label';
 import { Modal } from '../Modal';
-
-const trackCategories = {
-  vows: 'vow',
-  bonds: 'bond',
-  miscProgress: 'progress track',
-};
 
 const typeOptions = Object.keys(progressTrackTypes).map((type) => (
   <option key={type} value={type}>
@@ -30,50 +24,39 @@ const difficultyOptions = Object.keys(difficultyLevels).map((difficulty) => (
   </option>
 ));
 
-const isBond = (category) => category === 'bonds';
-const isVow = (category) => category === 'vows';
-const isBondOrVow = (category) => isBond(category) || isVow(category);
+const isBond = (track) => track.type === progressTrackTypes.bond;
+const isVow = (track) => track.type === progressTrackTypes.vow;
+const isBondOrVow = (track) => isBond(track) || isVow(track);
 
-const getDefaultType = (category) => {
-  if (isBond(category)) {
-    return progressTrackTypes.bond;
-  }
-
-  if (isVow(category)) {
-    return progressTrackTypes.vow;
-  }
-
-  return progressTrackTypes.combat;
-};
-
-const getDefaultDifficulty = (category) => {
-  if (isBond(category)) {
-    return difficultyLevels.bond;
-  }
-
-  return difficultyLevels.troublesome;
-};
-
-export const CreateProgressTrack = observer(
-  ({ category = 'miscProgress', onRequestClose }) => {
+export const AddOrUpdateProgressTrack = observer(
+  ({ progressTrack = {}, onRequestClose, title = 'Progress Track' }) => {
     const [submitError, setSubmitError] = useState(null);
+    const nameRef = useRef(null);
     const { register, handleSubmit, errors } = useForm({
-      type: getDefaultType(category),
-      difficulty: getDefaultDifficulty(category),
+      defaultValues: getSnapshot(progressTrack),
     });
 
     const { currentCharacter } = useAppStore();
 
-    const handleCreate = (values) => {
-      const nextTrack = {
-        ...values,
-        id: shortid(),
-        marks: [],
-      };
+    const focusAndRegisterName = useCallback(
+      (node) => {
+        if (!node) {
+          return;
+        }
 
+        register({ required: 'name is required' })(node);
+        nameRef.current = node;
+        nameRef.current.focus();
+      },
+      [register],
+    );
+
+    const handleSave = (values) => {
       try {
         setSubmitError(null);
-        currentCharacter.addProgressTrack(category, nextTrack);
+        progressTrack.update(values);
+        currentCharacter.maybeAddTrack(progressTrack);
+
         onRequestClose();
       } catch (err) {
         setSubmitError(err.toString());
@@ -84,59 +67,59 @@ export const CreateProgressTrack = observer(
       throw new Error('No character selected.');
     }
 
-    const title = trackCategories[category] || trackCategories.miscProgress;
-
     return (
       <Modal isOpen onRequestClose={onRequestClose} className="w-1/2">
-        <Modal.Header>
+        <Modal.Header onRequestClose={onRequestClose}>
           <div className="text-lg font-black uppercase">
-            <h2>New {title}</h2>
+            <h2>{title}</h2>
           </div>
         </Modal.Header>
-        <form className="py-4 px-2" onSubmit={handleSubmit(handleCreate)}>
+        <form className="py-4 px-2" onSubmit={handleSubmit(handleSave)}>
           {!!submitError && <InputError>{submitError}</InputError>}
           <Label htmlFor="name">
             <Label.Text>Name</Label.Text>
             <Input
               id="name"
               name="name"
-              ref={register({ required: 'name is required' })}
+              ref={focusAndRegisterName}
               error={!!errors.name}
             />
             {!!errors.name && <InputError>{errors.name?.message}</InputError>}
           </Label>
           <Label htmlFor="type">
             <Label.Text>Type</Label.Text>
-            <select
+            <Select
               id="type"
               name="type"
-              disabled={isBondOrVow(category)}
+              disabled={isBondOrVow(progressTrack)}
               ref={register({ required: 'type is required' })}
-              // isError={!!errors.type}
+              error={!!errors.type}
             >
               {typeOptions}
-            </select>
+            </Select>
             {!!errors.type && <InputError>{errors.type?.message}</InputError>}
           </Label>
           <Label htmlFor="difficulty">
             <Label.Text>Difficulty</Label.Text>
-            <select
+            <Select
               id="difficulty"
               name="difficulty"
-              disabled={isBond(category)}
+              disabled={isBond(progressTrack)}
               ref={register({
                 required: 'difficulty is required',
               })}
-              // isError={!!errors.difficulty}
+              error={!!errors.difficulty}
             >
               {difficultyOptions}
-            </select>
+            </Select>
             {!!errors.difficulty && (
               <InputError>{errors.difficulty?.message}</InputError>
             )}
           </Label>
           <Modal.Footer>
-            <BlueButton type="submit">Save</BlueButton>
+            <BlueButton type="submit" className="mr-2">
+              Save
+            </BlueButton>
             <GrayButton onClick={onRequestClose}>Cancel</GrayButton>
           </Modal.Footer>
         </form>

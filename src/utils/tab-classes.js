@@ -22,6 +22,7 @@ export const tabContentClasses = (isActive) =>
       'hover:bg-blue-200',
       'hover:text-blue-700',
       'cursor-pointer',
+      'uppercase',
     ],
     {
       'bg-gray-200': !isActive,

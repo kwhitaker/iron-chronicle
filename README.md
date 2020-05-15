@@ -31,7 +31,7 @@ A player aid for the Ironsworn RPG.
 - [ ] Support markdown in journal
 - [ ] Debilities
 - [x] Create bonds
-- [ ] Edit bonds
+- [x] Edit bonds
 - [ ] Create vows
 - [ ] Edit vows
 - [ ] Create misc progress

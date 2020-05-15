@@ -8,6 +8,9 @@ const classes = [
   'border',
   'border-red-500',
   'text-red-500',
+  'text-sm',
+  'uppercase',
+  'font-bold',
 ];
 
 export const InputError = ({ className, ...props }) => (

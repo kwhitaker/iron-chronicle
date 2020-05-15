@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 
 const classes = [
+  'appearance-none',
   'bg-gray-200',
   'px-2',
   'pt-2',
@@ -10,6 +11,7 @@ const classes = [
   'border',
   'border-black,',
   'focus:bg-blue-200',
+  'w-full',
 ];
 
 const errorStyles = ['border-red-500'];

@@ -1,4 +1,4 @@
-import CloseIcon from 'mdi-react/CloseIcon';
+import RefreshIcon from 'mdi-react/RefreshIcon';
 import FeatherIcon from 'mdi-react/FeatherIcon';
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
@@ -18,6 +18,7 @@ export const ProgressTrack = observer(
       resetProgress,
       completedMarks,
     },
+    onEdit,
     showDifficulty = true,
   }) => {
     const [progressResult, setProgressResult] = useState(null);
@@ -49,7 +50,7 @@ export const ProgressTrack = observer(
           <h4 className="text-lg font-bold flex-auto">{name}</h4>
           <div className="mx-2 flex flex-grow-0">
             <DiceButton onClick={handleProgressRolled} />
-            <Button title="Edit Track" className="block mr-2">
+            <Button title="Edit Track" className="block mr-2" onClick={onEdit}>
               <FeatherIcon size={16} />
             </Button>
             <Button
@@ -57,7 +58,7 @@ export const ProgressTrack = observer(
               className="block"
               onClick={handleProgressReset}
             >
-              <CloseIcon size={16} />
+              <RefreshIcon size={16} />
             </Button>
           </div>
           {showDifficulty && (

@@ -1,13 +1,23 @@
-import { types } from 'mobx-state-tree';
 import clamp from 'lodash/fp/clamp';
+import { types } from 'mobx-state-tree';
+import { Asset } from './asset';
+import { Attribute } from './attribute';
 import { Debility } from './debility';
-import { Stat } from './stat';
 import { Momentum } from './momentum';
 import { ProgressTrack } from './progress-track';
-import { Attribute } from './attribute';
-import { Asset } from './asset';
+import { Stat } from './stat';
 
-const trackKeys = ['vows', 'bonds', 'miscProgress'];
+const getTrackKey = (type) => {
+  if (type === 'bond') {
+    return 'bonds';
+  }
+
+  if (type === 'vow') {
+    return 'vows';
+  }
+
+  return 'miscProgress';
+};
 
 export const Character = types
   .model({
@@ -32,15 +42,15 @@ export const Character = types
     setName(nextName) {
       self.name = nextName;
     },
-    addProgressTrack(category = 'miscProgress', nextTrack) {
+    maybeAddTrack(nextTrack) {
       if (!nextTrack) {
         throw new Error('No track provided to addProgressTrack');
       }
 
-      if (!trackKeys.includes(category)) {
-        throw new Error('Invalid track category');
-      }
+      const category = getTrackKey(nextTrack.type);
 
-      self[category].push(nextTrack);
+      if (!self[category].find((track) => track.id === nextTrack.id)) {
+        self[category].push(nextTrack);
+      }
     },
   }));

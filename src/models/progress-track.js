@@ -123,6 +123,19 @@ export const ProgressTrack = types
     resetProgress() {
       self.marks.forEach((mark) => mark.setValue(0));
     },
+    update({ name, type, difficulty }) {
+      if (name) {
+        self.name = name;
+      }
+
+      if (type) {
+        self.type = type;
+      }
+
+      if (difficulty) {
+        self.difficulty = difficulty;
+      }
+    },
     afterCreate() {
       if (!self.marks.length) {
         self.marks = makeMarks();
