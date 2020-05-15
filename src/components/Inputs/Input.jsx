@@ -12,8 +12,16 @@ const classes = [
   'focus:bg-blue-200',
 ];
 
-export const Input = forwardRef(({ className, ...props }, ref) => (
-  <input {...props} className={clsx(classes, className)} ref={ref} />
-));
+const errorStyles = ['border-red-500'];
+
+export const Input = forwardRef(
+  ({ className, error = false, ...props }, ref) => (
+    <input
+      {...props}
+      className={clsx(classes, className, error && errorStyles)}
+      ref={ref}
+    />
+  ),
+);
 
 Input.displayName = 'Input';

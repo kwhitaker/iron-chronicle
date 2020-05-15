@@ -28,7 +28,7 @@ A player aid for the Ironsworn RPG.
 - [x] Reset roll misc progress
 - [x] View journal
 - [x] Edit journal
-- [x] Support markdown in journal
+- [ ] Support markdown in journal
 - [ ] Debilities
 - [ ] Create bonds
 - [ ] Edit bonds
@@ -48,3 +48,8 @@ A player aid for the Ironsworn RPG.
 - [ ] List characters in a game
 - [ ] Delete character
 - [ ] View roll log for a game
+- [ ] Current Character reference
+- [ ] Modal title styles
+- [ ] Modal form styles
+- [ ] Modal width prop
+- [ ] Notification center

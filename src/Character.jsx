@@ -23,9 +23,8 @@ import {
 } from './utils';
 
 export const Character = observer(() => {
-  const { characters } = useAppStore();
+  const { currentCharacter: character } = useAppStore();
   const [tabIndex, setTabIndex] = useState(0);
-  const character = characters[0];
 
   const handleNameUpdated = (e) => {
     character.setName(e.currentTarget.value);
@@ -42,6 +41,10 @@ export const Character = observer(() => {
 
     character.setXP(next);
   };
+
+  if (!character) {
+    return null;
+  }
 
   return (
     <form className="container mx-auto h-screen pt-4 pb-4 flex flex-col">

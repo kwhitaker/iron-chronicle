@@ -11,6 +11,7 @@ const trackKeys = ['vows', 'bonds', 'miscProgress'];
 
 export const Character = types
   .model({
+    id: types.identifier,
     name: types.string,
     attributes: types.array(Attribute),
     xp: types.number,

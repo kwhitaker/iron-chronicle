@@ -3,6 +3,8 @@ import clamp from 'lodash/fp/clamp';
 import pluck from 'lodash/fp/pluck';
 import sum from 'lodash/fp/sum';
 import compose from 'lodash/fp/compose';
+import times from 'lodash/fp/times';
+import shortid from 'shortid';
 
 export const MAX_MARK_VAL = 4;
 
@@ -55,6 +57,9 @@ const getProgressForDifficulty = (
 };
 
 const sumProgress = compose(sum, pluck('value'));
+
+const makeMarks = (numMarks = 10) =>
+  times(() => ({ id: shortid(), value: 0 }), numMarks);
 
 export const ProgressMark = types
   .model('Progress Mark', {
@@ -117,5 +122,10 @@ export const ProgressTrack = types
     },
     resetProgress() {
       self.marks.forEach((mark) => mark.setValue(0));
+    },
+    afterCreate() {
+      if (!self.marks.length) {
+        self.marks = makeMarks();
+      }
     },
   }));

@@ -25,7 +25,6 @@ const contentClasses = clsx([
   'm-4',
   'max-w-4xl',
   'max-h-full',
-  'text-center',
   'overflow-y-scroll',
   'transition-all',
   'duration-200',

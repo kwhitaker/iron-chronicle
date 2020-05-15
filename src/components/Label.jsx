@@ -21,6 +21,7 @@ export const LabelWrapper = ({ className, inline, ...props }) => (
     className={clsx(labelClasses, className, {
       'flex-col': !inline,
       'items-center': inline,
+      'my-3': !inline,
     })}
   />
 );

@@ -44,7 +44,7 @@ export const ProgressTrack = observer(
     ));
 
     return (
-      <div className="w-full my-2 flex flex-col justify-center items-center uppercase">
+      <div className="w-full my-4 flex flex-col justify-center items-center uppercase">
         <div className="w-10/12 p-2 flex justify-between items-center bg-gray-200 border border-gray-600">
           <h4 className="text-lg font-bold flex-auto">{name}</h4>
           <div className="mx-2 flex flex-grow-0">

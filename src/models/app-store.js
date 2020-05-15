@@ -4,12 +4,21 @@ import { createContext, useContext } from 'react';
 import { Character } from './character';
 import { Game } from './game';
 
-const AppStore = types.model('App Store', {
-  games: types.array(Game),
-  characters: types.array(Character),
-  currentGame: types.reference(Game),
-  currentCharacter: types.reference(Character),
-});
+const AppStore = types
+  .model('App Store', {
+    games: types.array(Game),
+    characters: types.array(Character),
+    currentGame: types.reference(Game),
+    currentCharacter: types.safeReference(Character),
+  })
+  .actions((self) => ({
+    setCurrentGame(gameId) {
+      self.currentGame = gameId;
+    },
+    setCurrentCharacter(charId) {
+      self.currentCharacter = charId;
+    },
+  }));
 
 export const appStore = AppStore.create({
   games: [
