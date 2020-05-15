@@ -30,7 +30,7 @@ A player aid for the Ironsworn RPG.
 - [x] Edit journal
 - [ ] Support markdown in journal
 - [ ] Debilities
-- [ ] Create bonds
+- [x] Create bonds
 - [ ] Edit bonds
 - [ ] Create vows
 - [ ] Edit vows
@@ -53,3 +53,4 @@ A player aid for the Ironsworn RPG.
 - [ ] Modal form styles
 - [ ] Modal width prop
 - [ ] Notification center
+- [ ] Unit test coverage

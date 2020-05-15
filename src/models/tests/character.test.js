@@ -3,6 +3,7 @@ import { Character } from '../character';
 
 const createChar = (name = 'foo', xp = 0) => {
   const char = Character.create({
+    id: 'foo',
     name,
     attributes: [],
     xp,
