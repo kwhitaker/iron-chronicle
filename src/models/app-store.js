@@ -44,9 +44,44 @@ export const appStore = AppStore.create({
         { name: 'wits', value: 1 },
       ],
       xp: 0,
-      conditions: [],
-      banes: [],
-      burdens: [],
+      conditions: {
+        wounded: {
+          name: 'wounded',
+          active: false,
+        },
+        shaken: {
+          name: 'shaken',
+          active: false,
+        },
+        unprepared: {
+          name: 'unprepared',
+          active: false,
+        },
+        encumbered: {
+          name: 'encumbered',
+          active: false,
+        },
+      },
+      banes: {
+        maimed: {
+          name: 'maimed',
+          active: false,
+        },
+        corrupted: {
+          name: 'corrupted',
+          active: false,
+        },
+      },
+      burdens: {
+        cursed: {
+          name: 'cursed',
+          active: false,
+        },
+        tormented: {
+          name: 'tormented',
+          active: false,
+        },
+      },
       stats: [
         {
           name: 'health',

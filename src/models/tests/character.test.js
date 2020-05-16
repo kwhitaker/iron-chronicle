@@ -7,9 +7,9 @@ const createChar = (name = 'foo', xp = 0) => {
     name,
     attributes: [],
     xp,
-    conditions: [],
-    burdens: [],
-    banes: [],
+    conditions: {},
+    burdens: {},
+    banes: {},
     momentum: {
       min: -6,
       max: 10,

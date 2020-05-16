@@ -12,3 +12,4 @@ export * from './Assets';
 export * from './CharacterTab';
 export * from './Journal';
 export * from './Buttons';
+export * from './Debilities';

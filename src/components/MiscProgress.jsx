@@ -6,11 +6,13 @@ import {
   ProgressTrack as ProgressModel,
   progressTrackTypes,
   difficultyLevels,
+  useAppStore,
 } from '../models';
 import { TabActionButton, TabContent, TabHeader } from './CharacterTab';
 import { AddOrUpdateProgressTrack, ProgressTrack } from './ProgressTrack';
 
-export const MiscProgress = observer(({ tracks = [] }) => {
+export const MiscProgress = observer(() => {
+  const { currentCharacter } = useAppStore();
   const [showModalFor, setShowModalFor] = useState(null);
 
   const toggleCreate = (e) => {
@@ -30,7 +32,7 @@ export const MiscProgress = observer(({ tracks = [] }) => {
   const toggleEdit = (id) => (e) => {
     e.preventDefault();
 
-    const track = tracks.find((t) => t.id === id);
+    const track = currentCharacter.miscProgress.find((t) => t.id === id);
 
     if (track) {
       setShowModalFor(track);
@@ -47,7 +49,7 @@ export const MiscProgress = observer(({ tracks = [] }) => {
           <PlusIcon size={16} />
         </TabActionButton>
       </TabHeader>
-      {tracks.map((t) => (
+      {currentCharacter.miscProgress.map((t) => (
         <ProgressTrack key={t.id} track={t} onEdit={toggleEdit(t.id)} />
       ))}
       {!!showModalFor && (

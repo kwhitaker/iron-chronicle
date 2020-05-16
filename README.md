@@ -55,3 +55,4 @@ A player aid for the Ironsworn RPG.
 - [ ] Notification center
 - [ ] Unit test coverage
 - [ ] Button tooltips
+- [ ] Refactor Data Store ☹️

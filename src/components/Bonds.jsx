@@ -6,11 +6,13 @@ import {
   ProgressTrack as ProgressModel,
   progressTrackTypes,
   difficultyLevels,
+  useAppStore,
 } from '../models';
 import { TabActionButton, TabContent, TabHeader } from './CharacterTab';
 import { AddOrUpdateProgressTrack, ProgressTrack } from './ProgressTrack';
 
-export const Bonds = observer(({ bonds = [] }) => {
+export const Bonds = observer(() => {
+  const { currentCharacter } = useAppStore();
   const [showModalFor, setShowModalFor] = useState(null);
 
   const toggleCreate = (e) => {
@@ -30,7 +32,7 @@ export const Bonds = observer(({ bonds = [] }) => {
   const toggleEdit = (id) => (e) => {
     e.preventDefault();
 
-    const bond = bonds.find((b) => b.id === id);
+    const bond = currentCharacter.bonds.find((b) => b.id === id);
 
     if (bond) {
       setShowModalFor(bond);
@@ -47,7 +49,7 @@ export const Bonds = observer(({ bonds = [] }) => {
           <PlusIcon size={16} />
         </TabActionButton>
       </TabHeader>
-      {bonds.map((b) => (
+      {currentCharacter.bonds.map((b) => (
         <ProgressTrack
           key={b.id}
           track={b}

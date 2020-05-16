@@ -1,12 +1,14 @@
-import React from 'react';
 import { observer } from 'mobx-react-lite';
+import React from 'react';
+import { useAppStore } from '../models';
 import { TabContent, TabHeader } from './CharacterTab';
 
-export const Assets = observer(({ assets = [] }) => {
+export const Assets = observer(() => {
+  const { currentCharacter } = useAppStore();
   return (
     <TabContent>
       <TabHeader>Assets</TabHeader>
-      {assets.map((a) => (
+      {currentCharacter.assets.map((a) => (
         <h5 key={a.id}>{a.name}</h5>
       ))}
     </TabContent>

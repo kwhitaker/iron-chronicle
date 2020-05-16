@@ -1,18 +1,20 @@
+import clsx from 'clsx';
 import isNaN from 'lodash/fp/isNaN';
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import {
+  Assets,
   Attributes,
   Bonds,
   Input,
+  Journal,
   Label,
   MiscProgress,
   Momentum,
   Stats,
   Vows,
-  Assets,
-  Journal,
+  Debilities,
 } from './components';
 import { useAppStore } from './models';
 import {
@@ -47,7 +49,7 @@ export const Character = observer(() => {
   }
 
   return (
-    <form className="container mx-auto h-screen pt-4 pb-4 flex flex-col">
+    <div className="container mx-auto h-screen pt-4 pb-4 flex flex-col">
       <div className="flex flex-initial mb-4">
         <div className="w-2/3 px-2">
           <Label htmlFor="name">
@@ -78,7 +80,7 @@ export const Character = observer(() => {
           <div className="h-full flex flex-col">
             <Attributes attributes={character.attributes} />
             <Tabs
-              className={tabsClasses}
+              className={clsx(tabsClasses, 'flex-auto', 'overflow-y-auto')}
               selectedIndex={tabIndex}
               onSelect={(nextIdx) => setTabIndex(nextIdx)}
             >
@@ -104,25 +106,26 @@ export const Character = observer(() => {
                 </Tab>
               </TabList>
               <TabPanel>
-                <Bonds bonds={character.bonds} />
+                <Bonds />
               </TabPanel>
               <TabPanel>
-                <Vows vows={character.vows} />
+                <Vows />
               </TabPanel>
               <TabPanel>
-                <MiscProgress tracks={character.miscProgress} />
+                <MiscProgress />
               </TabPanel>
               <TabPanel>
-                <Assets assets={character.assets} />
+                <Assets />
               </TabPanel>
               <TabPanel>
                 <Journal />
               </TabPanel>
             </Tabs>
+            <Debilities />
           </div>
         </div>
         <Stats stats={character.stats} />
       </div>
-    </form>
+    </div>
   );
 });

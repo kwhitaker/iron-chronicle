@@ -6,11 +6,13 @@ import {
   ProgressTrack as ProgressModel,
   progressTrackTypes,
   difficultyLevels,
+  useAppStore,
 } from '../models';
 import { TabActionButton, TabContent, TabHeader } from './CharacterTab';
 import { AddOrUpdateProgressTrack, ProgressTrack } from './ProgressTrack';
 
-export const Vows = observer(({ vows = [] }) => {
+export const Vows = observer(() => {
+  const { currentCharacter } = useAppStore();
   const [showModalFor, setShowModalFor] = useState(null);
 
   const toggleCreate = (e) => {
@@ -30,7 +32,7 @@ export const Vows = observer(({ vows = [] }) => {
   const toggleEdit = (id) => (e) => {
     e.preventDefault();
 
-    const vow = vows.find((v) => v.id === id);
+    const vow = currentCharacter.vows.find((v) => v.id === id);
 
     if (vow) {
       setShowModalFor(vow);
@@ -47,7 +49,7 @@ export const Vows = observer(({ vows = [] }) => {
           <PlusIcon size={16} />
         </TabActionButton>
       </TabHeader>
-      {vows.map((v) => (
+      {currentCharacter.vows.map((v) => (
         <ProgressTrack key={v.id} track={v} onEdit={toggleEdit(v.id)} />
       ))}
       {!!showModalFor && (
