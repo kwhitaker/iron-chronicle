@@ -45,7 +45,7 @@ export const Vows = observer(() => {
     <TabContent>
       <TabHeader>
         Vows
-        <TabActionButton onClick={toggleCreate}>
+        <TabActionButton onClick={toggleCreate} title="Add New Vow">
           <PlusIcon size={16} />
         </TabActionButton>
       </TabHeader>

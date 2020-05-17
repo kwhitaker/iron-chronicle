@@ -9,5 +9,11 @@ export const ActionRoller = observer(({ stat, inverted = false }) => {
     <RollModal stat={stat} onRequestClose={hideModal} />
   ));
 
-  return <DiceButton inverted={inverted} onClick={showModal} />;
+  return (
+    <DiceButton
+      inverted={inverted}
+      onClick={showModal}
+      title={`Roll ${stat.name}`}
+    />
+  );
 });

@@ -45,7 +45,7 @@ export const MiscProgress = observer(() => {
     <TabContent>
       <TabHeader>
         Other
-        <TabActionButton onClick={toggleCreate}>
+        <TabActionButton onClick={toggleCreate} title="Add New Progress Track">
           <PlusIcon size={16} />
         </TabActionButton>
       </TabHeader>

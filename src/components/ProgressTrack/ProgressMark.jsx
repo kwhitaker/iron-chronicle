@@ -4,6 +4,7 @@ import MinusIcon from 'mdi-react/MinusIcon';
 import SlashIcon from 'mdi-react/SlashForwardIcon';
 import React from 'react';
 import { observer } from 'mobx-react-lite';
+import clsx from 'clsx';
 
 const IconWrapper = ({ children }) => (
   <div className="flex justify-center items-center h-full w-full">
@@ -44,14 +45,24 @@ const Icons = {
   4: FourIcon,
 };
 
-export const ProgressMark = observer(({ mark: { value } }) => {
-  const Icon = Icons[value] || null;
+export const ProgressMark = observer(
+  ({ mark: { value }, disabled = false }) => {
+    const Icon = Icons[value] || null;
 
-  return (
-    <div className="flex-auto p-3">
-      <div className="w-10 h-10 border border-black bg-white cursor-pointer">
-        {Icon !== null && <Icon />}
+    return (
+      <div className={clsx(['flex-auto', 'p-3'])}>
+        <div
+          className={clsx(
+            ['w-10', 'h-10', 'border', 'border-black', 'bg-white'],
+            {
+              'cursor-pointer': !disabled,
+              'cursor-not-allowed': disabled,
+            },
+          )}
+        >
+          {Icon !== null && <Icon />}
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  },
+);

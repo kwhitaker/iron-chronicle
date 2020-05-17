@@ -37,7 +37,7 @@ export const Journal = observer(() => {
     <TabContent>
       <TabHeader>
         Journal&nbsp;
-        <TabActionButton onClick={() => setEditing(true)}>
+        <TabActionButton onClick={() => setEditing(true)} title="Edit Journal">
           <FeatherIcon size={16} />
         </TabActionButton>
       </TabHeader>

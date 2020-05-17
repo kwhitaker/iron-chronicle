@@ -21,7 +21,7 @@ export const ModalHeader = ({
   <div className={clsx(classes, className)} {...props}>
     {children}
     {onRequestClose && (
-      <Button onClick={onRequestClose} className="block ml-4">
+      <Button onClick={onRequestClose} className="block ml-4" title="Close">
         <CloseIcon size={24} />
       </Button>
     )}

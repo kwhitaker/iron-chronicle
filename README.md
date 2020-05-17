@@ -54,7 +54,7 @@ A player aid for the Ironsworn RPG.
 - [ ] Modal width prop
 - [ ] Notification center
 - [ ] Unit test coverage
-- [ ] Button tooltips
+- [x] Button tooltips
 - [ ] Help
 - [ ] README
 - [ ] Refactor Data Store?

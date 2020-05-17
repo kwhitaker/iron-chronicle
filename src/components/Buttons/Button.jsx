@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type */
-import React, { forwardRef } from 'react';
 import clsx from 'clsx';
+import React, { forwardRef } from 'react';
+import ReactTooltip from 'react-tooltip';
 
 const classes = clsx([
   'p-2',
@@ -11,12 +12,16 @@ const classes = clsx([
 ]);
 
 export const Button = forwardRef(
-  ({ className, type = 'button', ...props }, ref) => (
-    <button
-      ref={ref}
-      className={clsx(classes, className)}
-      type={type}
-      {...props}
-    />
+  ({ className, type = 'button', title, ...props }, ref) => (
+    <>
+      <button
+        ref={ref}
+        className={clsx(classes, className)}
+        type={type}
+        data-tip={title || null}
+        {...props}
+      />
+      {!!title && <ReactTooltip />}
+    </>
   ),
 );

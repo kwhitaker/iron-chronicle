@@ -2,6 +2,7 @@ import RefreshIcon from 'mdi-react/RefreshIcon';
 import FeatherIcon from 'mdi-react/FeatherIcon';
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
+import ReactTooltip from 'react-tooltip';
 import { difficultyLevels, useAppStore } from '../../models';
 import { progressRoll, RollModal } from '../ActionRoller';
 import { Button, DiceButton } from '../Buttons';
@@ -41,7 +42,12 @@ export const ProgressTrack = observer(
     };
 
     const progressMarks = marks.map((mark) => (
-      <ProgressMark key={mark.id} mark={mark} onClick={handleProgressMarked} />
+      <ProgressMark
+        key={mark.id}
+        mark={mark}
+        onClick={handleProgressMarked}
+        disabled={isComplete}
+      />
     ));
 
     return (
@@ -51,7 +57,11 @@ export const ProgressTrack = observer(
             {name}
           </h4>
           <div className="mx-2 flex flex-grow-0">
-            <DiceButton onClick={handleProgressRolled} />
+            <DiceButton
+              onClick={handleProgressRolled}
+              title="Roll Progress"
+              transparent
+            />
             <Button title="Edit Track" className="block mr-2" onClick={onEdit}>
               <FeatherIcon size={16} />
             </Button>
@@ -72,6 +82,7 @@ export const ProgressTrack = observer(
           title="Mark Progress"
           type="button"
           disabled={isComplete}
+          data-tip={isComplete ? 'Track Complete' : 'Mark Progress'}
           className={`w-10/12 flex justify-center items-center hover:bg-blue-200 transition-colors duration-200 ${
             isComplete ? 'cursor-not-allowed' : ''
           }`}
@@ -85,6 +96,7 @@ export const ProgressTrack = observer(
             onRequestClose={clearResult}
           />
         )}
+        <ReactTooltip />
       </div>
     );
   },

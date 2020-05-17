@@ -45,7 +45,7 @@ export const Bonds = observer(() => {
     <TabContent>
       <TabHeader>
         Bonds
-        <TabActionButton onClick={toggleCreate}>
+        <TabActionButton onClick={toggleCreate} title="Add New Bond">
           <PlusIcon size={16} />
         </TabActionButton>
       </TabHeader>
