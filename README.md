@@ -29,7 +29,7 @@ A player aid for the Ironsworn RPG.
 - [x] View journal
 - [x] Edit journal
 - [ ] Support markdown in journal
-- [ ] Debilities
+- [x] Debilities
 - [x] Create bonds
 - [x] Edit bonds
 - [x] Create vows

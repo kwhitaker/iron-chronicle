@@ -29,13 +29,23 @@ export const Momentum = observer(
 
     const handleResetUpdated = (e) => {
       e.preventDefault();
-      const next = e.currentTarget.value;
+      const next = Number(e.currentTarget.value);
+
+      if (!next || Number.isNaN(next) || !Number.isFinite(next)) {
+        return;
+      }
+
       setResetValue(next);
     };
 
     const handleMaxUpdated = (e) => {
       e.preventDefault();
-      const next = e.currentTarget.value;
+      const next = Number(e.currentTarget.value);
+
+      if (!next || Number.isNaN(next)) {
+        return;
+      }
+
       setCurrentMax(next);
     };
 
@@ -52,6 +62,7 @@ export const Momentum = observer(
                 value={v}
                 key={v}
                 active={value === v}
+                disabled={v > currentMax}
                 onClick={handleValueClicked(v)}
               />
             ))}
@@ -62,7 +73,7 @@ export const Momentum = observer(
             >
               Max
               <input
-                value={currentMax}
+                defaultValue={currentMax}
                 onChange={handleMaxUpdated}
                 id="currentMax"
                 className="text-2xl p-1 text-center font-black bg-transparent"
@@ -76,7 +87,7 @@ export const Momentum = observer(
             >
               Reset
               <input
-                value={resetValue}
+                defaultValue={resetValue}
                 onChange={handleResetUpdated}
                 id="resetValue"
                 className="text-2xl p-1 text-center font-black bg-transparent"
