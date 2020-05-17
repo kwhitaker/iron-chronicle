@@ -15,14 +15,14 @@ import {
   Stats,
   Vows,
   Debilities,
-} from './components';
-import { useAppStore } from './models';
+} from '../components';
+import { useAppStore } from '../models';
 import {
   tabClasses,
   tabContentClasses,
   tabListClasses,
   tabsClasses,
-} from './utils';
+} from '../utils';
 
 export const Character = observer(() => {
   const { currentCharacter: character } = useAppStore();
