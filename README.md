@@ -24,7 +24,7 @@ A player aid for the Ironsworn RPG.
 - [x] Roll vow
 - [x] Reset vow
 - [x] View misc progress
-- [x] Roll mis progress
+- [x] Roll misc progress
 - [x] Reset roll misc progress
 - [x] View journal
 - [x] Edit journal
@@ -55,4 +55,6 @@ A player aid for the Ironsworn RPG.
 - [ ] Notification center
 - [ ] Unit test coverage
 - [ ] Button tooltips
-- [ ] Refactor Data Store ☹️
+- [ ] Help
+- [ ] README
+- [ ] Refactor Data Store?
