@@ -10,6 +10,7 @@ import {
 } from '../models';
 import { TabActionButton, TabContent, TabHeader } from './CharacterTab';
 import { AddOrUpdateProgressTrack, ProgressTrack } from './ProgressTrack';
+import { IronText } from './IronText';
 
 export const Vows = observer(() => {
   const { currentCharacter } = useAppStore();
@@ -44,7 +45,7 @@ export const Vows = observer(() => {
   return (
     <TabContent>
       <TabHeader>
-        Vows
+        <IronText>Vows</IronText>
         <TabActionButton onClick={toggleCreate} title="Add New Vow">
           <PlusIcon size={16} />
         </TabActionButton>

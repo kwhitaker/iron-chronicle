@@ -1,7 +1,8 @@
 import React from 'react';
 import { ModalProvider } from 'react-modal-hook';
+import 'typeface-anton';
 import { Character } from './Character';
-import { AppStoreProvider, appStore } from './models';
+import { appStore, AppStoreProvider } from './models';
 
 const App = () => {
   return (

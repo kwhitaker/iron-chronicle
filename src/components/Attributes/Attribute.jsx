@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { ActionRoller } from '../ActionRoller';
+import { IronText } from '../IronText';
 
 export const Attribute = observer(({ attribute }) => {
   const { value = 1, name = 'Unknown', setValue } = attribute;
@@ -23,7 +24,7 @@ export const Attribute = observer(({ attribute }) => {
             onChange={handleValueUpdated}
           />
           <span className="flex justify-center items-center pb-2 uppercase text-lg font-black">
-            {name}
+            <IronText>{name}</IronText>
             <ActionRoller stat={attribute} />
           </span>
         </label>

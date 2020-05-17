@@ -49,7 +49,7 @@ A player aid for the Ironsworn RPG.
 - [ ] Delete character
 - [ ] View roll log for a game
 - [ ] Current Character reference
-- [ ] Modal title styles
+- [x] Modal title styles
 - [ ] Modal form styles
 - [ ] Modal width prop
 - [ ] Notification center

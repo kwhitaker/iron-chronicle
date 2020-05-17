@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import clsx from 'clsx';
 import { ModalHeader } from './ModalHeader';
 import { ModalFooter } from './ModalFooter';
+import { ModalTitle } from './ModalTitle';
 
 const overlayClasses = clsx([
   'fixed',
@@ -45,6 +46,7 @@ const ModalWrapper = ({ className = '', ...props }) => (
 export const Modal = Object.assign(ModalWrapper, {
   Header: ModalHeader,
   Footer: ModalFooter,
+  Title: ModalTitle,
 });
 
 ReactModal.setAppElement('#root');

@@ -21,7 +21,7 @@ export const Button = forwardRef(
         data-tip={title || null}
         {...props}
       />
-      {!!title && <ReactTooltip />}
+      {!!title && <ReactTooltip className="font-body" />}
     </>
   ),
 );

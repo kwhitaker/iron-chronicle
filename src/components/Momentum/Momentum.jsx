@@ -2,6 +2,7 @@ import React from 'react';
 import range from 'lodash/fp/range';
 import { observer } from 'mobx-react-lite';
 import { MomentumValue } from './MomentumValue';
+import { IronText } from '../IronText';
 
 export const Momentum = observer(
   ({
@@ -52,7 +53,7 @@ export const Momentum = observer(
     return (
       <div className="w-2/12 h-full flex flex-col overflow-y-hidden border border-black">
         <div className="flex-shrink-0 p-2 bg-black uppercase text-white text-center">
-          Momentum
+          <IronText>Momentum</IronText>
         </div>
         <div className="h-full flex flex-col h-auto overflow-y-auto scrollbar-w-2 scrollbar-track-gray-lighter scrollbar-thumb-rounded scrollbar-thumb-gray scrolling-touch">
           {range(min, max + 1)

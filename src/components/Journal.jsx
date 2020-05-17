@@ -3,9 +3,10 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactMarkDown from 'react-markdown';
 import { useAppStore } from '../models';
-import { BlueButton } from './Buttons';
+import { BlueButton, GrayButton } from './Buttons';
 import { TabActionButton, TabContent, TabHeader } from './CharacterTab';
 import { TextArea } from './Inputs';
+import { IronText } from './IronText';
 import { Modal } from './Modal';
 
 export const Journal = observer(() => {
@@ -36,7 +37,7 @@ export const Journal = observer(() => {
   return (
     <TabContent>
       <TabHeader>
-        Journal&nbsp;
+        <IronText>Journal</IronText>
         <TabActionButton onClick={() => setEditing(true)} title="Edit Journal">
           <FeatherIcon size={16} />
         </TabActionButton>
@@ -50,11 +51,9 @@ export const Journal = observer(() => {
         className="w-1/2 h-auto"
       >
         <Modal.Header onRequestClose={closeModal}>
-          <div className="text-lg font-black uppercase">
-            <h2>Edit Journal</h2>
-          </div>
+          <Modal.Title>Edit Journal</Modal.Title>
         </Modal.Header>
-        <div className="py-4 px-2">
+        <form className="py-4 px-2" onSubmit={handleSaveJournal}>
           <TextArea
             id="journal"
             className="h-64"
@@ -62,10 +61,13 @@ export const Journal = observer(() => {
             onChange={handleJournalUpdated}
             placeholder="Notes, reminders, things worth recording..."
           />
-        </div>
-        <Modal.Footer>
-          <BlueButton onClick={handleSaveJournal}>Save</BlueButton>
-        </Modal.Footer>
+          <Modal.Footer>
+            <BlueButton className="mr-2" type="submit">
+              Save
+            </BlueButton>
+            <GrayButton onClick={closeModal}>Cancel</GrayButton>
+          </Modal.Footer>
+        </form>
       </Modal>
     </TabContent>
   );

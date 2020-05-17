@@ -15,6 +15,7 @@ import {
   Stats,
   Vows,
   Debilities,
+  IronText,
 } from './components';
 import { useAppStore } from './models';
 import {
@@ -86,22 +87,28 @@ export const Character = observer(() => {
             >
               <TabList className={tabListClasses}>
                 <Tab className={tabClasses(false)}>
-                  <div className={tabContentClasses(tabIndex === 0)}>Bonds</div>
+                  <div className={tabContentClasses(tabIndex === 0)}>
+                    <IronText>Bonds</IronText>
+                  </div>
                 </Tab>
                 <Tab className={tabClasses(false)}>
-                  <div className={tabContentClasses(tabIndex === 1)}>Vows</div>
+                  <div className={tabContentClasses(tabIndex === 1)}>
+                    <IronText>Vows</IronText>
+                  </div>
                 </Tab>
                 <Tab className={tabClasses(false)}>
-                  <div className={tabContentClasses(tabIndex === 2)}>Other</div>
+                  <div className={tabContentClasses(tabIndex === 2)}>
+                    <IronText>Progress Tracks</IronText>
+                  </div>
                 </Tab>
                 <Tab className={tabClasses(false)}>
                   <div className={tabContentClasses(tabIndex === 3)}>
-                    Assets
+                    <IronText>Assets</IronText>
                   </div>
                 </Tab>
                 <Tab className={tabClasses(false)}>
                   <div className={tabContentClasses(tabIndex === 4)}>
-                    Journal
+                    <IronText>Journal</IronText>
                   </div>
                 </Tab>
               </TabList>

@@ -10,6 +10,7 @@ import {
 } from '../models';
 import { TabActionButton, TabContent, TabHeader } from './CharacterTab';
 import { AddOrUpdateProgressTrack, ProgressTrack } from './ProgressTrack';
+import { IronText } from './IronText';
 
 export const MiscProgress = observer(() => {
   const { currentCharacter } = useAppStore();
@@ -44,7 +45,7 @@ export const MiscProgress = observer(() => {
   return (
     <TabContent>
       <TabHeader>
-        Other
+        <IronText>Progress Tracks</IronText>
         <TabActionButton onClick={toggleCreate} title="Add New Progress Track">
           <PlusIcon size={16} />
         </TabActionButton>

@@ -13,3 +13,4 @@ export * from './CharacterTab';
 export * from './Journal';
 export * from './Buttons';
 export * from './Debilities';
+export * from './IronText';

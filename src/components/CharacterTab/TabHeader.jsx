@@ -2,6 +2,9 @@ import React from 'react';
 import clsx from 'clsx';
 
 const classes = clsx([
+  'flex',
+  'justify-center',
+  'items-center',
   'uppercase',
   'mb-4',
   'pb-2',

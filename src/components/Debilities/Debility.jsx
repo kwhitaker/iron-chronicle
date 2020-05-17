@@ -11,6 +11,7 @@ const labelClasses = clsx([
   'cursor-pointer',
   'uppercase',
   'transition-all',
+  'text-sm',
 ]);
 
 export const Debility = observer(({ name, active, toggle }) => {

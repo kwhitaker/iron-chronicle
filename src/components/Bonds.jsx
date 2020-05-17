@@ -3,12 +3,13 @@ import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import shortid from 'shortid';
 import {
+  difficultyLevels,
   ProgressTrack as ProgressModel,
   progressTrackTypes,
-  difficultyLevels,
   useAppStore,
 } from '../models';
 import { TabActionButton, TabContent, TabHeader } from './CharacterTab';
+import { IronText } from './IronText';
 import { AddOrUpdateProgressTrack, ProgressTrack } from './ProgressTrack';
 
 export const Bonds = observer(() => {
@@ -44,7 +45,7 @@ export const Bonds = observer(() => {
   return (
     <TabContent>
       <TabHeader>
-        Bonds
+        <IronText>Bonds</IronText>
         <TabActionButton onClick={toggleCreate} title="Add New Bond">
           <PlusIcon size={16} />
         </TabActionButton>

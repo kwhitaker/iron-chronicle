@@ -10,7 +10,7 @@ export const Debilities = observer(() => {
   return (
     <div className="flex flex-shrink-0 w-full h-48 bg-black text-white justify-center">
       <DebilityList
-        type="condtitions"
+        type="conditions"
         debilities={values(currentCharacter.conditions)}
       />
       <DebilityList

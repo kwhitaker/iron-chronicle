@@ -259,6 +259,7 @@ module.exports = {
         '"Courier New"',
         'monospace',
       ],
+      iron: ['Anton', 'sans-serif'],
     },
     fontSize: {
       xs: '0.75rem',
