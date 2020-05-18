@@ -25,7 +25,7 @@ A player aid for the Ironsworn RPG.
 - [x] Reset vow
 - [x] View misc progress
 - [x] Roll misc progress
-- [ ] Delete progress track
+- [x] Delete progress track
 - [x] Reset roll misc progress
 - [x] View journal
 - [x] Edit journal
@@ -37,7 +37,6 @@ A player aid for the Ironsworn RPG.
 - [x] Edit vows
 - [x] Create misc progress
 - [x] Edit misc progress
-- [x] Delete progress tracks
 - [x] View assets
 - [x] Create assets
 - [x] Edit assets
