@@ -25,6 +25,7 @@ A player aid for the Ironsworn RPG.
 - [x] Reset vow
 - [x] View misc progress
 - [x] Roll misc progress
+- [ ] Delete progress track
 - [x] Reset roll misc progress
 - [x] View journal
 - [x] Edit journal
@@ -37,8 +38,8 @@ A player aid for the Ironsworn RPG.
 - [x] Create misc progress
 - [x] Edit misc progress
 - [x] View assets
-- [ ] Create assets
-- [ ] Edit assets
+- [x] Create assets
+- [x] Edit assets
 - [ ] Save to storage
 - [ ] Load from storage
 - [ ] Create game
@@ -48,10 +49,10 @@ A player aid for the Ironsworn RPG.
 - [ ] List characters in a game
 - [ ] Delete character
 - [ ] View roll log for a game
-- [ ] Current Character reference
+- [x] Current Character reference
 - [x] Modal title styles
-- [ ] Modal form styles
-- [ ] Modal width prop
+- [x] Modal form styles
+- [x] Modal width prop
 - [ ] Notification center
 - [ ] Unit test coverage
 - [x] Button tooltips

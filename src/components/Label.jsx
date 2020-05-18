@@ -1,7 +1,13 @@
 import React from 'react';
 import clsx from 'clsx';
 
-const textClasses = clsx(['uppercase', 'cursor-pointer', 'font-bold']);
+const textClasses = clsx([
+  'uppercase',
+  'cursor-pointer',
+  'font-bold',
+  'flex',
+  'items-center',
+]);
 
 const LabelText = ({ className, inline, ...props }) => (
   <span

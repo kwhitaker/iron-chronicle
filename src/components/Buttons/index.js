@@ -1,4 +1,5 @@
 export * from './BlueButton';
 export * from './Button';
-export * from './GrayButton';
 export * from './DiceButton';
+export * from './GrayButton';
+export * from './RedButton';

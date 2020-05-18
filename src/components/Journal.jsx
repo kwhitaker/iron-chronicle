@@ -8,6 +8,7 @@ import { TabActionButton, TabContent, TabHeader } from './CharacterTab';
 import { TextArea } from './Inputs';
 import { IronText } from './IronText';
 import { Modal } from './Modal';
+import { Form } from './Form';
 
 export const Journal = observer(() => {
   const { currentGame } = useAppStore();
@@ -49,7 +50,7 @@ export const Journal = observer(() => {
         <Modal.Header onRequestClose={closeModal}>
           <Modal.Title>Edit Journal</Modal.Title>
         </Modal.Header>
-        <form className="py-4 px-2" onSubmit={handleSaveJournal}>
+        <Form onSubmit={handleSaveJournal}>
           <TextArea
             id="journal"
             className="h-64"
@@ -63,7 +64,7 @@ export const Journal = observer(() => {
             </BlueButton>
             <GrayButton onClick={closeModal}>Cancel</GrayButton>
           </Modal.Footer>
-        </form>
+        </Form>
       </Modal>
     </TabContent>
   );

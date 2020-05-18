@@ -3,15 +3,19 @@ import { observer } from 'mobx-react-lite';
 import { applySnapshot, getSnapshot } from 'mobx-state-tree';
 import React, { useState } from 'react';
 import shortid from 'shortid';
-import { useAppStore, Asset as AssetModel, assetTypes } from '../../models';
-import { TabContent, TabHeader, TabActionButton } from '../CharacterTab';
+import { Asset as AssetModel, assetTypes, useAppStore } from '../../models';
+import { TabActionButton, TabContent, TabHeader } from '../CharacterTab';
 import { IronText } from '../IronText';
-import { Asset } from './Asset';
 import { AddOrUpdateAsset } from './AddOrUpdateAsset';
+import { Asset } from './Asset';
 
 export const Assets = observer(() => {
   const { currentCharacter } = useAppStore();
   const [showModalFor, setShowModalFor] = useState(null);
+
+  const isExisting =
+    !!showModalFor &&
+    !!currentCharacter.assets.find((a) => a.id === showModalFor.id);
 
   const toggleCreate = (e) => {
     e.preventDefault();
@@ -23,7 +27,7 @@ export const Assets = observer(() => {
       description: '',
       health: null,
       maxHealth: null,
-      abilities: [],
+      abilities: [{ id: shortid(), description: '', available: false }],
     });
 
     setShowModalFor(nextAsset);
@@ -35,6 +39,12 @@ export const Assets = observer(() => {
   };
 
   const hideModal = () => setShowModalFor(null);
+
+  const handleDeleteAsset = (e) => {
+    e.preventDefault();
+    currentCharacter.removeAsset(showModalFor);
+    setShowModalFor(null);
+  };
 
   const handleSaveAsset = (values) => {
     const existing = getSnapshot(showModalFor);
@@ -49,12 +59,13 @@ export const Assets = observer(() => {
         maxHealth: healthNum,
       });
 
-      if (!currentCharacter.assets.find((a) => a.id === showModalFor.id)) {
+      if (!isExisting) {
         currentCharacter.addAsset(showModalFor);
       }
 
       hideModal();
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
     }
   };
@@ -77,6 +88,7 @@ export const Assets = observer(() => {
           asset={showModalFor}
           onRequestClose={hideModal}
           onSubmit={handleSaveAsset}
+          onDelete={isExisting ? handleDeleteAsset : undefined}
         />
       )}
     </TabContent>

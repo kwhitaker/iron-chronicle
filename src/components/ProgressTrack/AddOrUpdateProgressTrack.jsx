@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { getSnapshot } from 'mobx-state-tree';
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   difficultyLevels,
@@ -8,6 +8,7 @@ import {
   useAppStore,
 } from '../../models';
 import { BlueButton, GrayButton } from '../Buttons';
+import { Form } from '../Form';
 import { Input, InputError, Select } from '../Inputs';
 import { Label } from '../Label';
 import { Modal } from '../Modal';
@@ -72,7 +73,7 @@ export const AddOrUpdateProgressTrack = observer(
         <Modal.Header onRequestClose={onRequestClose}>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
-        <form className="py-4 px-2" onSubmit={handleSubmit(handleSave)}>
+        <Form onSubmit={handleSubmit(handleSave)}>
           {!!submitError && <InputError>{submitError}</InputError>}
           <Label htmlFor="name">
             <Label.Text>Name</Label.Text>
@@ -120,7 +121,7 @@ export const AddOrUpdateProgressTrack = observer(
             </BlueButton>
             <GrayButton onClick={onRequestClose}>Cancel</GrayButton>
           </Modal.Footer>
-        </form>
+        </Form>
       </Modal>
     );
   },

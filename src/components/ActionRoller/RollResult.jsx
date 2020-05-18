@@ -5,6 +5,7 @@ import { Label } from '../Label';
 import { ResultHit } from '../ResultHit';
 import { Modal } from '../Modal';
 import { BlueButton } from '../Buttons';
+import { Form } from '../Form';
 
 export const RollResult = observer(({ result, onRequestClose }) => {
   const {
@@ -41,7 +42,7 @@ export const RollResult = observer(({ result, onRequestClose }) => {
   };
 
   return (
-    <form className="py-4 px-2 text-left" onSubmit={onRequestClose}>
+    <Form onSubmit={onRequestClose}>
       <p className="italic text-sm mx-2">* optional field.</p>
       <div className="flex items-bottom">
         <Label htmlFor="title" className="flex-auto mr-2">
@@ -86,6 +87,6 @@ export const RollResult = observer(({ result, onRequestClose }) => {
           Done
         </BlueButton>
       </Modal.Footer>
-    </form>
+    </Form>
   );
 });
