@@ -16,6 +16,10 @@ export const Vows = observer(() => {
   const { currentCharacter } = useAppStore();
   const [showModalFor, setShowModalFor] = useState(null);
 
+  const isExisting =
+    !!showModalFor &&
+    currentCharacter.vows.find((v) => v.id === showModalFor.id);
+
   const toggleCreate = (e) => {
     e.preventDefault();
 
@@ -40,6 +44,12 @@ export const Vows = observer(() => {
     }
   };
 
+  const handleDeleteVow = (e) => {
+    e.preventDefault();
+    currentCharacter.removeTrack(showModalFor);
+    setShowModalFor(null);
+  };
+
   const hideModal = () => setShowModalFor(null);
 
   return (
@@ -58,6 +68,7 @@ export const Vows = observer(() => {
           onRequestClose={hideModal}
           progressTrack={showModalFor}
           title="Vow"
+          onDelete={isExisting ? handleDeleteVow : undefined}
         />
       )}
     </TabContent>

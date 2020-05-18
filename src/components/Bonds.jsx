@@ -16,6 +16,10 @@ export const Bonds = observer(() => {
   const { currentCharacter } = useAppStore();
   const [showModalFor, setShowModalFor] = useState(null);
 
+  const isExisting =
+    !!showModalFor &&
+    currentCharacter.bonds.find((b) => b.id === showModalFor.id);
+
   const toggleCreate = (e) => {
     e.preventDefault();
 
@@ -38,6 +42,12 @@ export const Bonds = observer(() => {
     if (bond) {
       setShowModalFor(bond);
     }
+  };
+
+  const handleDeleteBond = (e) => {
+    e.preventDefault();
+    currentCharacter.removeTrack(showModalFor);
+    setShowModalFor(null);
   };
 
   const hideModal = () => setShowModalFor(null);
@@ -63,6 +73,7 @@ export const Bonds = observer(() => {
           onRequestClose={hideModal}
           progressTrack={showModalFor}
           title="Bond"
+          onDelete={isExisting ? handleDeleteBond : undefined}
         />
       )}
     </TabContent>

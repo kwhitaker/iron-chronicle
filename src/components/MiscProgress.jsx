@@ -16,6 +16,10 @@ export const MiscProgress = observer(() => {
   const { currentCharacter } = useAppStore();
   const [showModalFor, setShowModalFor] = useState(null);
 
+  const isExisting =
+    !!showModalFor &&
+    currentCharacter.miscProgress.find((t) => t.id === showModalFor.id);
+
   const toggleCreate = (e) => {
     e.preventDefault();
 
@@ -40,6 +44,12 @@ export const MiscProgress = observer(() => {
     }
   };
 
+  const handleDeleteTrack = (e) => {
+    e.preventDefault();
+    currentCharacter.removeTrack(showModalFor);
+    setShowModalFor(null);
+  };
+
   const hideModal = () => setShowModalFor(null);
 
   return (
@@ -58,6 +68,7 @@ export const MiscProgress = observer(() => {
           onRequestClose={hideModal}
           progressTrack={showModalFor}
           title="Progress Track"
+          onDelete={isExisting ? handleDeleteTrack : undefined}
         />
       )}
     </TabContent>

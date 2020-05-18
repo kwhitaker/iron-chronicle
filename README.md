@@ -37,6 +37,7 @@ A player aid for the Ironsworn RPG.
 - [x] Edit vows
 - [x] Create misc progress
 - [x] Edit misc progress
+- [x] Delete progress tracks
 - [x] View assets
 - [x] Create assets
 - [x] Edit assets

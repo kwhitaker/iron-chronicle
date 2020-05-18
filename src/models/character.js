@@ -53,6 +53,11 @@ export const Character = types
         self[category].push(nextTrack);
       }
     },
+    removeTrack(nextTrack) {
+      const category = getTrackKey(nextTrack.type);
+
+      self[category].remove(nextTrack);
+    },
     addAsset(nextAsset) {
       if (!nextAsset) {
         throw new Error('No asset provided to addAsset');

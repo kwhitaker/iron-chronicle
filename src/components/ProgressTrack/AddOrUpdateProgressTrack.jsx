@@ -7,7 +7,7 @@ import {
   progressTrackTypes,
   useAppStore,
 } from '../../models';
-import { BlueButton, GrayButton } from '../Buttons';
+import { BlueButton, GrayButton, RedButton } from '../Buttons';
 import { Form } from '../Form';
 import { Input, InputError, Select } from '../Inputs';
 import { Label } from '../Label';
@@ -30,7 +30,12 @@ const isVow = (track) => track.type === progressTrackTypes.vow;
 const isBondOrVow = (track) => isBond(track) || isVow(track);
 
 export const AddOrUpdateProgressTrack = observer(
-  ({ progressTrack = {}, onRequestClose, title = 'Progress Track' }) => {
+  ({
+    progressTrack = {},
+    onRequestClose,
+    title = 'Progress Track',
+    onDelete,
+  }) => {
     const [submitError, setSubmitError] = useState(null);
     const nameRef = useRef(null);
     const { register, handleSubmit, errors } = useForm({
@@ -116,6 +121,11 @@ export const AddOrUpdateProgressTrack = observer(
             )}
           </Label>
           <Modal.Footer>
+            {!!onDelete && (
+              <div className="flex flex-1 justify-start items-center">
+                <RedButton onClick={onDelete}>Delete</RedButton>
+              </div>
+            )}
             <BlueButton type="submit" className="mr-2">
               Save
             </BlueButton>
