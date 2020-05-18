@@ -53,4 +53,14 @@ export const Character = types
         self[category].push(nextTrack);
       }
     },
+    addAsset(nextAsset) {
+      if (!nextAsset) {
+        throw new Error('No asset provided to addAsset');
+      }
+
+      self.assets.push(nextAsset);
+    },
+    removeAsset(asset) {
+      self.assets.remove(asset);
+    },
   }));

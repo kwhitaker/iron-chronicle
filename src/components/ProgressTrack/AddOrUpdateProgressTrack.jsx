@@ -68,11 +68,9 @@ export const AddOrUpdateProgressTrack = observer(
     }
 
     return (
-      <Modal isOpen onRequestClose={onRequestClose} className="w-1/2">
+      <Modal isOpen onRequestClose={onRequestClose}>
         <Modal.Header onRequestClose={onRequestClose}>
-          <div className="text-lg font-black uppercase">
-            <h2>{title}</h2>
-          </div>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <form className="py-4 px-2" onSubmit={handleSubmit(handleSave)}>
           {!!submitError && <InputError>{submitError}</InputError>}

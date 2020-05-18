@@ -152,6 +152,7 @@ export const appStore = AppStore.create({
           type: 'companion',
           health: 3,
           maxHealth: 5,
+          description: 'fizz bang bin bar buzz bar',
           abilities: [
             { id: 'ability1', description: 'foo', available: true },
             { id: 'ability2', description: 'bar', available: false },

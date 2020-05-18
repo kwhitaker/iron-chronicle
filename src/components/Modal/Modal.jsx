@@ -35,9 +35,12 @@ const contentClasses = clsx([
   'rounded-sm',
 ]);
 
-const ModalWrapper = ({ className = '', ...props }) => (
+const ModalWrapper = ({ className = '', size = 'base', ...props }) => (
   <ReactModal
-    className={clsx(contentClasses, className)}
+    className={clsx(contentClasses, className, {
+      'w-1/2': size === 'base',
+      'w-1/4': size === 'sm',
+    })}
     overlayClassName={overlayClasses}
     {...props}
   />

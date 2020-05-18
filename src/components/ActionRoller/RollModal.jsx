@@ -41,7 +41,7 @@ export const RollModal = observer(
       <Modal
         isOpen
         onRequestClose={onRequestClose}
-        className={hasResult ? 'w-1/2' : 'w-1/4'}
+        size={hasResult ? 'base' : 'sm'}
       >
         <Modal.Header onRequestClose={onRequestClose}>
           <div className="text-lg font-black uppercase">

@@ -5,7 +5,7 @@ import { Modal } from '../Modal';
 
 export const ProgressRollResult = observer(({ onRequestClose, result }) => {
   return (
-    <Modal isOpen onRequestClose={onRequestClose} className="w-1/2">
+    <Modal isOpen onRequestClose={onRequestClose}>
       <Modal.Header>
         <div className="text-lg font-black uppercase">
           <h2>Progress Roll</h2>

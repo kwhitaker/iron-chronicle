@@ -42,6 +42,7 @@ export const RollResult = observer(({ result, onRequestClose }) => {
 
   return (
     <form className="py-4 px-2 text-left" onSubmit={onRequestClose}>
+      <p className="italic text-sm mx-2">* optional field.</p>
       <div className="flex items-bottom">
         <Label htmlFor="title" className="flex-auto mr-2">
           <Label.Text>Title</Label.Text>
@@ -57,7 +58,7 @@ export const RollResult = observer(({ result, onRequestClose }) => {
       </div>
       <div className="mt-4">
         <Label htmlFor="outcome">
-          <Label.Text>Outcome</Label.Text>
+          <Label.Text>Outcome *</Label.Text>
           <Input
             id="outcome"
             value={outcome || ''}
@@ -68,7 +69,7 @@ export const RollResult = observer(({ result, onRequestClose }) => {
       </div>
       <div className="mt-4">
         <Label htmlFor="description">
-          <Label.Text>Description</Label.Text>
+          <Label.Text>Description *</Label.Text>
           <TextArea
             id="description"
             value={description || ''}

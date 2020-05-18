@@ -45,11 +45,7 @@ export const Journal = observer(() => {
       <div className="w-full">
         <ReactMarkDown source={journal} />
       </div>
-      <Modal
-        isOpen={editing}
-        onRequesetClose={closeModal}
-        className="w-1/2 h-auto"
-      >
+      <Modal isOpen={editing} onRequesetClose={closeModal}>
         <Modal.Header onRequestClose={closeModal}>
           <Modal.Title>Edit Journal</Modal.Title>
         </Modal.Header>
