@@ -151,9 +151,12 @@ export const appStore = AppStore.create({
           name: 'test asset',
           type: 'companion',
           health: 3,
+          maxHealth: 5,
           abilities: [
             { id: 'ability1', description: 'foo', available: true },
             { id: 'ability2', description: 'bar', available: false },
+            { id: 'ability3', description: 'bar', available: false },
+            { id: 'ability4', description: 'bar', available: false },
           ],
         },
       ],

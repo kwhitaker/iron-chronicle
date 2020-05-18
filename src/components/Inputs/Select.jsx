@@ -5,14 +5,10 @@ import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 const classes = [
   'appearance-none',
   'bg-gray-200',
-  'px-2',
-  'pt-2',
-  'pb-2',
-  'text-lg',
+  'p-2',
   'border',
   'border-black,',
   'focus:bg-blue-200',
-  'w-full',
   'cursor-pointer',
   'uppercase',
 ];
@@ -32,7 +28,7 @@ const iconStyles = [
 ];
 
 export const Select = forwardRef(
-  ({ className, error = false, disabled, ...props }, ref) => (
+  ({ className, error = false, disabled, inline = false, ...props }, ref) => (
     <div className="relative">
       <select
         {...props}
@@ -42,6 +38,9 @@ export const Select = forwardRef(
           className,
           error && errorStyles,
           disabled && disabledStyles,
+          {
+            'w-full': !inline,
+          },
         )}
         ref={ref}
       />
