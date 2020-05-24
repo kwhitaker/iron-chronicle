@@ -1,6 +1,25 @@
 # Iron Chronicle
 
-A player aid for the Ironsworn RPG.
+A player aid for the [Ironsworn RPG](https://www.ironswornrpg.com/).  Right now running this locally will create a character sheet with some very basic rolling functionality.  This project is mostly a way for me to explore some javascript packages.  I've gotten bored with it, so I may (probably) never finish it.  There is currently no persistence, but that could be easily added with some local storage or IndexDB functionality.
+
+If you _do_ decide to fork it, I would appreciate some credit.
+
+## To Run:
+```bash
+$ yarn # or npm install
+$ yarn start # or npm start
+```
+
+## For tests
+```bash
+$ yarn test # watch mode
+$ yarn rite # test once
+```
+
+## For linting
+```bash
+$ yarn lint
+```
 
 ## Todo:
 
